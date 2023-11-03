@@ -1,0 +1,31 @@
+.navbar-container {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 20px;
+}
+.navbar-container b {
+    font-size: 12px;
+}
+.logo{
+    color: rgb(162, 26, 26);
+    font-size: 16px;
+    font-weight: 800;
+}
+
+nav ul {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.bar {
+    border-left: 1px solid black;
+    height: 15px;
+}
+.other {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
