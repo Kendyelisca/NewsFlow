@@ -6,11 +6,12 @@ import { formatDistanceToNow } from "date-fns";
 import "./TopBusiness.css";
 const TopBusiness = () => {
   const [topNews, setTopNews] = useState(null);
+  const apiKey = process.env.NEWS_API_KEY;
 
   useEffect(() => {
     axios
       .get(
-        "https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=1df38fa2a0264f95b2dcb2720c2205cf"
+        `https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=${apiKey}`
       )
       .then((response) => {
         if (response.data.articles && response.data.articles.length > 0) {
@@ -35,7 +36,10 @@ const TopBusiness = () => {
           </div>
           <div className="description">
             {" "}
-            <p>Published {getRelativeTime(topNews.publishedAt)}</p>
+            <p className="text-sm">
+              Published: .{" "}
+              <strong>{getRelativeTime(topNews.publishedAt)}</strong>
+            </p>
             <h3>{topNews.title}</h3>
             <p>{topNews.description}</p>
             <a href={topNews.url} target="_blank" rel="noopener noreferrer">
