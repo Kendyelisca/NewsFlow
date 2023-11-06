@@ -6,11 +6,11 @@
   padding-top: 20px;
 }
 .navbar-container b {
-  font-size: 12px;
+  font-size: 14px;
 }
 .logo {
   color: rgb(162, 26, 26);
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 800;
 }
 
@@ -28,4 +28,8 @@ nav ul {
   display: flex;
   align-items: center;
   gap: 20px;
+  
+}
+.other b {
+  font-size: 20px;
 }

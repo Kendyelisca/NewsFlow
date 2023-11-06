@@ -1,4 +1,7 @@
 import Link from "next/link";
+import { AiFillBell } from "react-icons/ai";
+import { AiFillSave } from "react-icons/ai";
+import { FaPenToSquare } from "react-icons/fa6";
 import "./navbar.css";
 const MyNavbar = () => {
   return (
@@ -35,9 +38,15 @@ const MyNavbar = () => {
           </ul>
         </nav>
         <div className="other">
-          <b>mark</b>
-          <b>bell</b>
-          <b>other</b>
+          <b>
+            <FaPenToSquare />
+          </b>
+          <b>
+            <AiFillSave />
+          </b>
+          <b>
+            <AiFillBell />
+          </b>
         </div>
       </div>
     </>
