@@ -11,7 +11,7 @@ const TopBusiness = () => {
   useEffect(() => {
     axios
       .get(
-        `https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=${apiKey}`
+        "https://gnews.io/api/v4/search?q=example&apikey=92f2bfa5875287ea90f28f8c6758e6b4"
       )
       .then((response) => {
         if (response.data.articles && response.data.articles.length > 0) {
@@ -32,7 +32,7 @@ const TopBusiness = () => {
       {topNews && (
         <div className="top-container">
           <div className="image">
-            <img src={topNews.urlToImage} alt={topNews.title} />
+            <img src={topNews.image} alt={topNews.title} />
           </div>
           <div className="description">
             {" "}
