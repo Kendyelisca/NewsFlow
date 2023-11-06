@@ -1,5 +1,10 @@
 import Navbar from "@/components/navbar/Navbar";
+import TopBusiness from "@/components/top-business/TopBusiness";
 
 export default function Home() {
-  return <main>every session of news are going in there</main>;
+  return (
+    <main>
+      <TopBusiness />
+    </main>
+  );
 }
