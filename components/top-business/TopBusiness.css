@@ -1,20 +1,28 @@
 .top-container {
-  padding-left: 30px;
-  padding-right: 30px;
-  padding-top: 20px;
+  padding: 50px;
   display: flex;
   gap: 20px;
 }
 
 .image {
-  width: 600px;
-  height: 180px;
-  overflow: hidden;
-  border-radius: 15px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5), 0 1px 3px rgba(0, 0, 0, 0.08);
+  flex: 1;
+  min-width: 0; /* Ensure the image can shrink if needed */
 }
+
 .image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5), 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.description {
+  flex: 2;
+  min-width: 0; /* Ensure the description can shrink if needed */
+  padding: 10px;
+}
+
+.description a {
+  color: rgb(120, 27, 27);
 }

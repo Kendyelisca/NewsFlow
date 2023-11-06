@@ -5,8 +5,8 @@ import axios from "axios";
 import { formatDistanceToNow } from "date-fns";
 import "./TopBusiness.css";
 const TopBusiness = () => {
+  const apiKey = process.env.API_KEY;
   const [topNews, setTopNews] = useState(null);
-  const apiKey = process.env.NEWS_API_KEY;
 
   useEffect(() => {
     axios
@@ -36,12 +36,11 @@ const TopBusiness = () => {
           </div>
           <div className="description">
             {" "}
-            <p className="text-sm">
-              Published: .{" "}
-              <strong>{getRelativeTime(topNews.publishedAt)}</strong>
+            <p className="text-sm pb-5">
+              Published: . {getRelativeTime(topNews.publishedAt)}
             </p>
-            <h3>{topNews.title}</h3>
-            <p>{topNews.description}</p>
+            <h3 className="font-bold pb-3 text-2xl">{topNews.title}</h3>
+            <p className=" pb-3 text-3xl">{topNews.description}</p>
             <a href={topNews.url} target="_blank" rel="noopener noreferrer">
               Read More
             </a>
