@@ -51,14 +51,6 @@ const Myfooter = () => {
         <p>University</p>
         <p>School</p>
       </div>
-      <div className="options">
-        <b>Sport</b>
-        <p>Football</p>
-        <p>Basketball</p>
-        <p>Tennis</p>
-        <p>Golf</p>
-        <p>Swim</p>
-      </div>
     </div>
   );
 };
