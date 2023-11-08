@@ -2,6 +2,7 @@
   padding: 50px;
   display: flex;
   gap: 20px;
+  margin-bottom: 20px;
 }
 
 .image {
@@ -14,7 +15,7 @@
   height: 100%;
   object-fit: cover;
   border-radius: 15px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5), 0 1px 3px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 9px rgba(0, 0, 0, 0.5), 0 1px 3px rgba(0, 0, 0, 0.08);
 }
 
 .description {
