@@ -1,14 +1,15 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { formatDistanceToNow } from "date-fns";
 import "./TopBusiness.css";
+
 const TopBusiness = () => {
   const apiKey = process.env.API_KEY;
   const [topNews, setTopNews] = useState(null);
 
-  useEffect(() => {
+  const fetchTopNews = () => {
     axios
       .get(
         "https://gnews.io/api/v4/search?q=example&apikey=92f2bfa5875287ea90f28f8c6758e6b4"
@@ -21,6 +22,21 @@ const TopBusiness = () => {
       .catch((error) => {
         console.error("Error fetching top business news: ", error);
       });
+  };
+
+  useEffect(() => {
+    // Initial fetch when the component mounts
+    fetchTopNews();
+
+    // Set up a timer to fetch new data every 5 minutes
+    const intervalId = setInterval(() => {
+      fetchTopNews();
+    }, 5 * 60 * 1000); // 5 minutes in milliseconds
+
+    return () => {
+      // Clean up the timer when the component unmounts
+      clearInterval(intervalId);
+    };
   }, []);
 
   const getRelativeTime = (publishedAt) => {
@@ -35,12 +51,11 @@ const TopBusiness = () => {
             <img src={topNews.image} alt={topNews.title} />
           </div>
           <div className="description">
-            {" "}
             <p className="text-sm pb-5">
-              Published: . {getRelativeTime(topNews.publishedAt)}
+              Published: {getRelativeTime(topNews.publishedAt)}
             </p>
             <h3 className="font-bold pb-3 text-2xl">{topNews.title}</h3>
-            <p className=" pb-3 text-3xl">{topNews.description}</p>
+            <p className="pb-3 text-3xl">{topNews.description}</p>
             <a href={topNews.url} target="_blank" rel="noopener noreferrer">
               Read More
             </a>

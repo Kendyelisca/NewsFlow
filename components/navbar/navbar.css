@@ -1,3 +1,5 @@
+
+
 .navbar-container {
   display: flex;
   justify-content: space-between;
@@ -6,12 +8,12 @@
   padding-top: 20px;
 }
 .navbar-container b {
-  font-size: 14px;
+  font-size: 16px;
 }
 .logo {
   color: rgb(162, 26, 26);
-  font-size: 18px;
-  font-weight: 800;
+  font-size: 30px;
+  font-weight: bold;
 }
 
 nav ul {
@@ -32,4 +34,5 @@ nav ul {
 }
 .other b {
   font-size: 20px;
+  
 }

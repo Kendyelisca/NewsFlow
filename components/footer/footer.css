@@ -1,13 +1,16 @@
 .container-bottom {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    padding-top: 50px;
-    padding-bottom: 20px;
-    margin-left: 50px;
-    margin-right: 50px;
-    border-top: 1px solid black;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding-top: 50px;
+  padding-bottom: 20px;
+  margin-left: 50px;
+  margin-right: 50px;
+  border-top: 1px solid black;
 }
-.options{
-    flex: 1;
+.options {
+  flex: 1;
+  line-height: 1.8em;
+  font-size: 18px;
 }
