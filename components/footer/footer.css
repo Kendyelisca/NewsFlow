@@ -14,3 +14,11 @@
   line-height: 1.8em;
   font-size: 18px;
 }
+
+
+@media (max-width: 785px) {
+  .container-bottom {
+    padding: 20px;
+    margin: 20px;
+  }
+}

@@ -3,8 +3,8 @@
 .navbar-container {
   display: flex;
   justify-content: space-between;
-  padding-left: 50px;
-  padding-right: 50px;
+ padding-left: 50px;
+  padding-right: 50px; 
   padding-top: 20px;
 }
 .navbar-container b {
@@ -35,4 +35,77 @@ nav ul {
 .other b {
   font-size: 20px;
   
+}
+.menu {
+  display: none;
+}
+
+
+.menu-options {
+  display: none;
+}
+
+
+@media (max-width: 785px) {
+  .navbar-container {
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .other  {
+    display: none;
+  }
+  .navbar-container b {
+    display: none;
+  }
+
+  .menu{
+    display: block;
+    font-size: 22px;
+  }
+
+  .menu-options {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    margin-right: 10px;
+    background-color: rgb(245, 246, 248);
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px gray;
+    position: absolute;
+    top: 70px;
+    right: 0;
+    z-index: 1;
+  }
+
+  .menu-options li {
+    padding: 10px 20px;
+    border-bottom: 1px solid rgb(202, 197, 197);
+    text-align: center;
+  }
+
+  .menu-options li:last-child {
+    border-bottom: none;
+  }
+
+  .menu-options li a {
+    text-decoration: none;
+    color: rgb(102, 102, 102);
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .menu-options li:hover {
+    transform: scale(0.9);
+    transition: 0.3s;
+  }
+
+  .menu-options li a:hover {
+    color: var(--primary-color);
+  }
+
 }
