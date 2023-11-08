@@ -27,3 +27,11 @@
 .description a {
   color: rgb(120, 27, 27);
 }
+
+@media (max-width: 785px) {
+  .top-container{
+    flex-direction: column;
+    padding: 20px;
+  }
+  
+}

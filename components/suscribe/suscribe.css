@@ -24,3 +24,12 @@ font-size: 20px;
     height: 50px;
 }
 
+@media (max-width: 785px) {
+    .sus-container {
+        padding: 20px;
+    }
+    .sub-form input {
+        max-width: 250px;
+    }
+}
+
