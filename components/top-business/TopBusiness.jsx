@@ -12,7 +12,7 @@ const TopBusiness = () => {
   const fetchTopNews = () => {
     axios
       .get(
-        "https://gnews.io/api/v4/search?q=example&apikey=4bc79dae18ef7c43af7319c6e58bfa22"
+        "https://gnews.io/api/v4/search?q=example&apikey=cb59f3cf10b28ead7df56a9a22eac883"
       )
       .then((response) => {
         if (response.data.articles && response.data.articles.length > 0) {
