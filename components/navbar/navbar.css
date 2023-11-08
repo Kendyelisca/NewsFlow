@@ -29,11 +29,11 @@ nav ul {
 .other {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 40px;
   
 }
 .other b {
-  font-size: 20px;
+  font-size: 24px;
   
 }
 .menu {
