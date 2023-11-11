@@ -3,6 +3,7 @@
   padding-right: 50px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .late-container {
@@ -24,7 +25,6 @@
 
 .article-details {
   margin-top: 10px;
-
 }
 
 img {
@@ -44,10 +44,9 @@ img {
   .article-card {
     width: 200px;
   }
-
 }
 
-@media (max-width: 480px){
+@media (max-width: 480px) {
   .late-container {
     flex-wrap: nowrap;
     flex-direction: column;
