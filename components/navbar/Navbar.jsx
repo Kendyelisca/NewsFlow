@@ -26,22 +26,22 @@ const MyNavbar = () => {
             </li>
             <li className="bar"></li>
             <li>
-              <Link href="/home">
+              <Link href="/stories">
                 <b>Stories</b>
               </Link>
             </li>
             <li>
-              <Link href="/about">
+              <Link href="/creator">
                 <b>Creator</b>
               </Link>
             </li>
             <li>
-              <Link href="/contact">
+              <Link href="/community">
                 <b>Community</b>
               </Link>
             </li>
             <li>
-              <Link href="/contact">
+              <Link href="/subscribe">
                 <b>Subscribe</b>
               </Link>
             </li>
@@ -51,14 +51,17 @@ const MyNavbar = () => {
           {isMenuOpen ? <FaTimes /> : <FaBars />}
         </div>
         <div className="other">
-          <b>
+          <b className="flex items-center gap-2">
             <FaPenToSquare />
+            <p>write</p>
           </b>
           <b>
             <AiFillSave />
           </b>
           <b>
-            <AiFillBell />
+            <a href="#suscribe">
+              <AiFillBell />
+            </a>
           </b>
         </div>
 
@@ -66,32 +69,32 @@ const MyNavbar = () => {
           <div className="menu-options">
             {" "}
             <li>
-              <Link href="/aboutus">Stories</Link>
+              <Link href="/stories">Stories</Link>
             </li>
             <li>
-              <Link href="/services">Creator</Link>
+              <Link href="/creator">Creator</Link>
             </li>
             <li>
-              <Link href="/contact">Community</Link>
+              <Link href="/community">Community</Link>
             </li>
             <li>
-              <Link href="/login">Subscribe</Link>
+              <Link href="/subscribe">Subscribe</Link>
             </li>
             <li>
-              <Link href="/login" className="flex  gap-2 items-center">
+              <p className="flex  gap-2 items-center">
                 <FaPenToSquare />
                 Write
-              </Link>
+              </p>
             </li>
             <li>
-              <Link href="/login">
+              <Link href="/save">
                 <AiFillSave />
               </Link>
             </li>
             <li>
-              <Link href="/login">
+              <a href="#suscribe">
                 <AiFillBell />
-              </Link>
+              </a>
             </li>
           </div>
         )}
