@@ -27,16 +27,6 @@ const TopBusiness = () => {
   useEffect(() => {
     // Initial fetch when the component mounts
     fetchTopNews();
-
-    // Set up a timer to fetch new data every 5 minutes
-    const intervalId = setInterval(() => {
-      fetchTopNews();
-    }, 5 * 60 * 1000); // 5 minutes in milliseconds
-
-    return () => {
-      // Clean up the timer when the component unmounts
-      clearInterval(intervalId);
-    };
   }, []);
 
   const getRelativeTime = (publishedAt) => {
