@@ -36,7 +36,10 @@ const Subscribe = () => {
           value={email} // Bind the input value to the email state
           onChange={handleEmailChange} // Handle input changes
         />
-        <button type="submit" className="bg-red-800 text-white p-2 pl-4 pr-4">
+        <button
+          type="submit"
+          className="bg-red-800 text-white p-2 pl-4 pr-4 hover:bg-red-700"
+        >
           Subscribe
         </button>
       </form>

@@ -7,13 +7,20 @@ import { FaPenToSquare } from "react-icons/fa6";
 import { FaTimes, FaBars } from "react-icons/fa";
 import "./navbar.css";
 import { useState } from "react";
+import { useNewsContext } from "@/contexts/newsContext";
 const MyNavbar = () => {
   const [isMenuOpen, setMenuOpen] = useState(false);
-
+  const { isForm, toggleForm } = useNewsContext();
+  console.log("isForm:", isForm);
+  const toggleFormHandler = () => {
+    console.log("Toggling form...");
+    toggleForm(); // Check if this function is being called
+  };
   // Function to toggle the menu
   const toggleMenu = () => {
     setMenuOpen(!isMenuOpen);
   };
+
   return (
     <>
       <div className="navbar-container">
@@ -51,7 +58,10 @@ const MyNavbar = () => {
           {isMenuOpen ? <FaTimes /> : <FaBars />}
         </div>
         <div className="other">
-          <b className="flex items-center gap-2">
+          <b
+            className="flex items-center gap-2 cursor-pointer"
+            onClick={toggleFormHandler}
+          >
             <FaPenToSquare />
             <p>write</p>
           </b>
@@ -81,7 +91,10 @@ const MyNavbar = () => {
               <Link href="/subscribe">Subscribe</Link>
             </li>
             <li>
-              <p className="flex  gap-2 items-center">
+              <p
+                className="flex  gap-2 items-center"
+                onClick={toggleFormHandler}
+              >
                 <FaPenToSquare />
                 Write
               </p>
