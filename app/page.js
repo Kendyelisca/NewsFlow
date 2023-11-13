@@ -1,3 +1,4 @@
+import Cultural from "@/components/cultural/Cultural";
 import LatestNews from "@/components/latest-news/LatestNews";
 import MostView from "@/components/mostview/MostView";
 import Subscribe from "@/components/suscribe/Suscribe";
@@ -24,6 +25,7 @@ export default function Home() {
         <TopBusiness />
         <LatestNews />
         <MostView />
+        <Cultural />
         <Subscribe />
       </NewsContextProvider>
     </main>

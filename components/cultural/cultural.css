@@ -1,0 +1,68 @@
+/* cultural.css */
+.cult-container {
+  padding: 50px;
+}
+
+.cult-1 {
+  list-style-type: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px; /* Adjust the gap as needed */
+  grid-template-areas:
+    "a a b"
+    "a a e"
+    "r t y";
+}
+
+.cult-1 li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+}
+
+.cult-1 img {
+  width: 100%; /* Make the image fill its container */
+  max-height: 100%;
+  object-fit: cover; /* Preserve aspect ratio and cover the container */
+}
+
+/* Assign grid areas dynamically based on the index */
+.item-1 {
+  grid-area: y;
+}
+
+.item-2 {
+  grid-area: a;
+}
+.item-3 {
+  grid-area: t;
+}
+
+.item-4 {
+  grid-area: r;
+}
+.item-5 {
+  grid-area: e;
+}
+.item-6 {
+  grid-area: b;
+}
+
+.cult-1 p {
+  text-align: center;
+  margin-top: 10px; /* Adjust the margin as needed */
+}
+
+@media (max-width: 785px) {
+  .cult-container {
+    padding: 20px;
+  }
+  .cult-1 {
+    grid-template-areas:
+      "a a a"
+      "e e b"
+      "r t y";
+  }
+}

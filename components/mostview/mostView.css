@@ -7,7 +7,7 @@
 
 @media (max-width: 785px) {
   .most-container {
-    padding: 30px;
+    padding: 20px;
   }
   .sub-container {
   flex-wrap: wrap;
