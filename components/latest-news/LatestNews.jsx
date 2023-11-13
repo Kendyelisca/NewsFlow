@@ -29,15 +29,22 @@ const LatestNews = () => {
       <div className="late-container">
         {articles.map((article) => (
           <div key={article.url} className="article-card">
-            <img src={article.image} alt={article.title} />
-            <div className="article-details ">
-              <div className="flex gap-3 pb-3 justify-center">
-                <p className="font-bold text-red-800">{article.source.name}</p>
-                <b>.</b>
-                <p>{formatDistanceToNow(new Date(article.publishedAt))} ago</p>
+            <a href={article.url} target="_blank">
+              {" "}
+              <img src={article.image} alt={article.title} />
+              <div className="article-details ">
+                <div className="flex gap-3 pb-3 justify-center">
+                  <p className="font-bold text-red-800">
+                    {article.source.name}
+                  </p>
+                  <b>.</b>
+                  <p>
+                    {formatDistanceToNow(new Date(article.publishedAt))} ago
+                  </p>
+                </div>
+                <h3 className="font-bold">{article.title}</h3>
               </div>
-              <h3 className="font-bold">{article.title}</h3>
-            </div>
+            </a>
           </div>
         ))}
       </div>

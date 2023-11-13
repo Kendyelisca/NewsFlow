@@ -28,7 +28,7 @@ const MostView = () => {
 
   return (
     <div className="most-container">
-      <div className="flex justify-between pb-8">
+      <div className="flex justify-between items-center pb-8">
         <h2 className="text-4xl font-bold">Most Watched</h2>
         <p className="font-bold text-red-800">See all</p>
       </div>
