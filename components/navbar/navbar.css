@@ -46,7 +46,7 @@ nav ul {
 }
 
 
-@media (max-width: 785px) {
+@media (max-width: 900px) {
   .navbar-container {
     justify-content: space-between;
     align-items: center;
@@ -63,6 +63,7 @@ nav ul {
   .menu{
     display: block;
     font-size: 22px;
+    cursor: pointer;
   }
 
   .menu-options {
