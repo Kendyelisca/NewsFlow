@@ -32,7 +32,7 @@ const Cultural = () => {
     <div className="cult-container">
       <div className="flex justify-between items-center pb-10">
         {" "}
-        <h2 className="font-bold text-3xl md:text-3xl lg:text-4xl">
+        <h2 className="font-bold text-2xl md:text-2xl lg:text-4xl">
           Entertainment and Arts
         </h2>
         <p className="font-bold text-red-800">See all</p>

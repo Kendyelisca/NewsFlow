@@ -15,6 +15,7 @@ const MyNavbar = () => {
   const toggleFormHandler = () => {
     console.log("Toggling form...");
     toggleForm(); // Check if this function is being called
+    toggleMenu();
   };
   // Function to toggle the menu
   const toggleMenu = () => {
@@ -91,13 +92,13 @@ const MyNavbar = () => {
               <Link href="/subscribe">Subscribe</Link>
             </li>
             <li>
-              <p
-                className="flex  gap-2 items-center"
+              <a
+                className="flex  gap-2 items-center cursor-pointer"
                 onClick={toggleFormHandler}
               >
                 <FaPenToSquare />
                 Write
-              </p>
+              </a>
             </li>
             <li>
               <Link href="/save">
