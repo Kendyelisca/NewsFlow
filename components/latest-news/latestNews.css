@@ -50,6 +50,7 @@ img {
   .late-container {
     flex-wrap: nowrap;
     flex-direction: column;
+    gap: 15px;
     align-items: center;
   }
   .article-card {

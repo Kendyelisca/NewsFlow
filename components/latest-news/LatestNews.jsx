@@ -12,7 +12,7 @@ const LatestNews = () => {
   useEffect(() => {
     axios
       .get(
-        "https://gnews.io/api/v4/top-headlines?category=general&lang=en&apikey=92f2bfa5875287ea90f28f8c6758e6b4"
+        "https://gnews.io/api/v4/top-headlines?category=general&lang=en&apikey=4bc79dae18ef7c43af7319c6e58bfa22"
       )
       .then((response) => {
         const articleData = response.data.articles.slice(0, 8); // Get the first 8 articles
@@ -23,7 +23,9 @@ const LatestNews = () => {
   return (
     <div>
       <div className="top-title">
-        <h2 className="font-bold text-4xl">Latest News</h2>
+        <h2 className="font-bold text-3xl md:text-3xl lg:text-4xl">
+          Latest News
+        </h2>
         <p className="font-bold text-red-800">See all</p>
       </div>
       <div className="late-container">
