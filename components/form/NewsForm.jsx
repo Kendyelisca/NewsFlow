@@ -9,6 +9,7 @@ const NewsForm = () => {
   const [formData, setFormData] = useState({
     title: "",
     image: "",
+    url: "",
     description: "",
     timestamp: new Date().toISOString(),
   });
@@ -40,7 +41,9 @@ const NewsForm = () => {
 
   return (
     <div className="story-container">
-      <h2 className="font-bold text-4xl pb-8">Share your story</h2>
+      <h2 className="font-bold text-3xl md:text-3xl lg:text-4xl pb-8">
+        Share your story
+      </h2>
       <form onSubmit={handleSubmit} className="form-container">
         <input
           type="text"
@@ -55,6 +58,14 @@ const NewsForm = () => {
           name="image"
           placeholder="Image URL:"
           value={formData.image}
+          onChange={handleInputChange}
+        />
+
+        <input
+          type="text"
+          name="link"
+          placeholder="Link(optional):"
+          value={formData.url}
           onChange={handleInputChange}
         />
 

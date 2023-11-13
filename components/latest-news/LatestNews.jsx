@@ -23,7 +23,7 @@ const LatestNews = () => {
   return (
     <div>
       <div className="top-title">
-        <h2 className="font-bold text-3xl md:text-3xl lg:text-4xl">
+        <h2 className="font-bold text-2xl md:text-2xl lg:text-4xl">
           Latest News
         </h2>
         <p className="font-bold text-red-800">See all</p>
