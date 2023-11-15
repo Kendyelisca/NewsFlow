@@ -23,7 +23,7 @@ const Subscribe = () => {
   return (
     <div className="sus-container" id="suscribe">
       <b className="font-bold text-red-800">NewsFlow</b>
-      <p className="font-bold">
+      <p className="font-bold text-center">
         Let's subscribe so you don't miss the latest updates
       </p>
       <form className="sub-form pt-4" onSubmit={handleSubmit}>
@@ -32,7 +32,7 @@ const Subscribe = () => {
           name="email"
           id="email"
           placeholder="Your email"
-          className="p-2 pr-24"
+          className="p-2 "
           value={email} // Bind the input value to the email state
           onChange={handleEmailChange} // Handle input changes
         />

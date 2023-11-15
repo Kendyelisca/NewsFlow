@@ -8,6 +8,7 @@ import { FaTimes, FaBars } from "react-icons/fa";
 import "./navbar.css";
 import { useState } from "react";
 import { useNewsContext } from "@/contexts/newsContext";
+import NewsForm from "../form/NewsForm";
 const MyNavbar = () => {
   const [isMenuOpen, setMenuOpen] = useState(false);
   const { isForm, toggleForm } = useNewsContext();
@@ -113,6 +114,8 @@ const MyNavbar = () => {
             </li>
           </div>
         )}
+
+        {isForm && <NewsForm toggleForm={toggleForm} />}
       </div>
     </>
   );

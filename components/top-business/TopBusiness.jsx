@@ -11,8 +11,7 @@ const TopBusiness = () => {
   const apiKey = process.env.API_KEY;
   const [topNews, setTopNews] = useState(null);
   const [loading, setLoading] = useState(true);
-  const { isForm } = useNewsContext();
-  console.log("isForm value in TopBusiness:", isForm);
+
   const fetchTopNews = () => {
     axios
       .get(
@@ -27,12 +26,11 @@ const TopBusiness = () => {
         console.error("Error fetching top business news: ", error);
       })
       .finally(() => {
-        setLoading(false); // Set loading to false regardless of success or failure
+        setLoading(false);
       });
   };
 
   useEffect(() => {
-    // Initial fetch when the component mounts
     fetchTopNews();
   }, []);
 
@@ -42,40 +40,26 @@ const TopBusiness = () => {
 
   return (
     <div>
-      {isForm ? (
-        <>
-          {" "}
-          {console.log("Rendering NewsForm...")}
-          <NewsForm />
-        </>
+      {loading ? (
+        <Loader />
       ) : (
-        <>
-          {loading ? (
-            <Loader />
-          ) : (
-            topNews && (
-              <div className="top-container">
-                <div className="image">
-                  <img src={topNews.image} alt={topNews.title} />
-                </div>
-                <div className="description">
-                  <p className="text-sm pb-5">
-                    Published . {getRelativeTime(topNews.publishedAt)}
-                  </p>
-                  <h3 className="font-bold pb-3 text-2xl">{topNews.title}</h3>
-                  <p className="pb-3 text-3xl">{topNews.description}</p>
-                  <a
-                    href={topNews.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Read More
-                  </a>
-                </div>
-              </div>
-            )
-          )}
-        </>
+        topNews && (
+          <div className="top-container">
+            <div className="image">
+              <img src={topNews.image} alt={topNews.title} />
+            </div>
+            <div className="description">
+              <p className="text-sm pb-5">
+                Published . {getRelativeTime(topNews.publishedAt)}
+              </p>
+              <h3 className="font-bold pb-3 text-2xl">{topNews.title}</h3>
+              <p className="pb-3 text-3xl">{topNews.description}</p>
+              <a href={topNews.url} target="_blank" rel="noopener noreferrer">
+                Read More
+              </a>
+            </div>
+          </div>
+        )
       )}
     </div>
   );

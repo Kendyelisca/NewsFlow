@@ -8,7 +8,7 @@ export const useNewsContext = () => {
   const [isForm, setIsForm] = useState(false);
 
   const toggleForm = () => {
-    setIsForm((prevIsForm) => !prevIsForm);
+    setIsForm(!isForm);
   };
 
   const value = {
