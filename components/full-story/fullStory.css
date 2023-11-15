@@ -1,0 +1,40 @@
+/* Your other CSS styles */
+
+.full-story {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-areas:
+    "a b c"
+    "a o e";
+  gap: 10px; /* Adjust the gap as needed */
+}
+
+.full-story a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Assign grid areas dynamically based on the index */
+.full-story a:nth-child(1) {
+  grid-area: a;
+}
+
+.full-story a:nth-child(2) {
+  grid-area: b;
+}
+
+.full-story a:nth-child(3) {
+  grid-area: c;
+}
+
+.full-story a:nth-child(4),
+.full-story a:nth-child(5) {
+  grid-area: o;
+}
+
+.full-story a:nth-child(6) {
+  grid-area: e;
+}
+
+/* Your other CSS styles */

@@ -11,6 +11,7 @@ import { useNewsContext } from "@/contexts/newsContext";
 const MyNavbar = () => {
   const [isMenuOpen, setMenuOpen] = useState(false);
   const { isForm, toggleForm } = useNewsContext();
+
   console.log("isForm:", isForm);
   const toggleFormHandler = () => {
     console.log("Toggling form...");
