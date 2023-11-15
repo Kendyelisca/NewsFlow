@@ -69,7 +69,9 @@ const MyNavbar = () => {
             <p>write</p>
           </b>
           <b>
-            <AiFillSave />
+            <Link href="/saved_news">
+              <AiFillSave />
+            </Link>
           </b>
           <b>
             <a href="#suscribe">
@@ -103,7 +105,7 @@ const MyNavbar = () => {
               </a>
             </li>
             <li>
-              <Link href="/save">
+              <Link href="/saved_news">
                 <AiFillSave />
               </Link>
             </li>
