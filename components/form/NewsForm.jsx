@@ -46,7 +46,7 @@ const NewsForm = ({ toggleForm }) => {
       .catch((error) => {
         // Handle error
         console.error("Error submitting form: ", error);
-        setErrorMessage("Error sharing the story. Please try again.");
+        setErrorMessage("Please try again the 25th of November.");
       });
   };
 

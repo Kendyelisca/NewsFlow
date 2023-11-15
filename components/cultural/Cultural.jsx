@@ -13,7 +13,7 @@ const Cultural = () => {
     const fetchCulturalArticles = async () => {
       try {
         const response = await axios.get(
-          "https://gnews.io/api/v4/search?q=entertainment art&lang=en&apikey=4bc79dae18ef7c43af7319c6e58bfa22"
+          "https://gnews.io/api/v4/search?q=entertainment art&lang=en&apikey=92f2bfa5875287ea90f28f8c6758e6b4"
         );
 
         if (response.data && response.data.articles) {

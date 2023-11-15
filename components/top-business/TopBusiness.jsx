@@ -15,7 +15,7 @@ const TopBusiness = () => {
   const fetchTopNews = () => {
     axios
       .get(
-        "https://gnews.io/api/v4/search?q=example&apikey=cb59f3cf10b28ead7df56a9a22eac883"
+        "https://gnews.io/api/v4/search?q=example&apikey=92f2bfa5875287ea90f28f8c6758e6b4"
       )
       .then((response) => {
         if (response.data.articles && response.data.articles.length > 0) {
