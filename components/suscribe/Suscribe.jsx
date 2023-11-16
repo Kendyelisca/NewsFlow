@@ -33,7 +33,7 @@ const Subscribe = () => {
     } catch (error) {
       console.error("Error submitting form:", error);
       setSubmitted(false); // Set submitted to false in case of an error
-      setErrorMessage("Please try again the 20th of November."); // Set an error message
+      setErrorMessage("Subscription failed! Please try again."); // Set an error message
     }
   };
 
