@@ -18,7 +18,12 @@ const Subscribe = () => {
 
     try {
       // Here, add the logic to send the email value to an API endpoint
-      const response = await axios.post("your-api-endpoint", { email });
+      const response = await axios.post(
+        "https://newsflow-backend.onrender.com/mail",
+        {
+          email,
+        }
+      );
       console.log("API response:", response.data);
 
       // Clear the email input after successful submission
