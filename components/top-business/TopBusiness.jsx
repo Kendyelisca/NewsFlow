@@ -3,8 +3,6 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { formatDistanceToNow } from "date-fns";
 import "./TopBusiness.css";
-import NewsForm from "../form/NewsForm";
-import { useNewsContext } from "@/contexts/newsContext";
 import Loader from "../loader/Loader";
 
 const TopBusiness = () => {
@@ -15,7 +13,7 @@ const TopBusiness = () => {
   const fetchTopNews = () => {
     axios
       .get(
-        "https://gnews.io/api/v4/search?q=example&apikey=92f2bfa5875287ea90f28f8c6758e6b4"
+        "https://gnews.io/api/v4/search?q=example&apikey=cb59f3cf10b28ead7df56a9a22eac883"
       )
       .then((response) => {
         if (response.data.articles && response.data.articles.length > 0) {
