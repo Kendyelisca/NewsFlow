@@ -5,19 +5,21 @@ import axios from "axios";
 import "./suscribe.css";
 
 const Subscribe = () => {
-  const [email, setEmail] = useState(""); // State to store the email input value
-  const [submitted, setSubmitted] = useState(false); // State to track if the form has been submitted
-  const [errorMessage, setErrorMessage] = useState(""); // State to store error messages
+  const [email, setEmail] = useState("");
+  const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false); // New state to track the submission process
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleEmailChange = (event) => {
-    setEmail(event.target.value); // Update the email state when input changes
+    setEmail(event.target.value);
   };
 
   const handleSubmit = async (event) => {
-    event.preventDefault(); // Prevent the page from reloading on form submission
+    event.preventDefault();
 
     try {
-      // Here, add the logic to send the email value to an API endpoint
+      setSubmitting(true); // Set submitting to true while waiting for the API response
+
       const response = await axios.post(
         "https://newsflow-backend.onrender.com/mail",
         {
@@ -26,14 +28,15 @@ const Subscribe = () => {
       );
       console.log("API response:", response.data);
 
-      // Clear the email input after successful submission
       setEmail("");
-      setSubmitted(true); // Set submitted to true
-      setErrorMessage(""); // Clear any previous error message
+      setSubmitted(true);
+      setErrorMessage("");
     } catch (error) {
       console.error("Error submitting form:", error);
-      setSubmitted(false); // Set submitted to false in case of an error
-      setErrorMessage("Subscription failed! Please try again."); // Set an error message
+      setSubmitted(false);
+      setErrorMessage("Subscription failed! Please try again.");
+    } finally {
+      setSubmitting(false); // Set submitting to false after API response or error
     }
   };
 
@@ -56,14 +59,15 @@ const Subscribe = () => {
           id="email"
           placeholder="Your email"
           className="p-2 "
-          value={email} // Bind the input value to the email state
-          onChange={handleEmailChange} // Handle input changes
+          value={email}
+          onChange={handleEmailChange}
         />
         <button
           type="submit"
           className="bg-red-800 text-white p-2 pl-4 pr-4 hover:bg-red-700"
+          disabled={submitting} // Disable the button while submitting
         >
-          Subscribe
+          {submitting ? "Subscribing..." : "Subscribe"}
         </button>
       </form>
     </div>
