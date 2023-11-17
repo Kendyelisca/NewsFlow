@@ -26,7 +26,9 @@ const LatestNews = () => {
         <h2 className="font-bold text-2xl md:text-2xl lg:text-4xl">
           Latest News
         </h2>
-        <p className="font-bold text-red-800">See all</p>
+        <p className="font-bold text-red-800">
+          <Link href="/latest_news">See all</Link>
+        </p>
       </div>
       <div className="late-container">
         {articles.map((article) => (
