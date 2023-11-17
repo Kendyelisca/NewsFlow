@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./mostView.css";
+import Link from "next/link";
 const MostView = () => {
   const [mostViewedNews, setMostViewedNews] = useState([]);
 
@@ -32,7 +33,9 @@ const MostView = () => {
         <h2 className="font-bold text-2xl md:text-2xl lg:text-4xl">
           Most Watched
         </h2>
-        <p className="font-bold text-red-800">See all</p>
+        <p className="font-bold text-red-800">
+          <Link href="/most_watched">See all</Link>
+        </p>
       </div>
 
       <div>
