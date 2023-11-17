@@ -25,6 +25,7 @@
 .cult-1 img {
   width: 100%; /* Make the image fill its container */
   max-height: 100%;
+  border-radius: 20px;
   object-fit: cover; /* Preserve aspect ratio and cover the container */
 }
 
@@ -62,7 +63,8 @@
   .cult-1 {
     grid-template-areas:
       "a a a"
-      "e e b"
+      "e e e"
+      "b b b"
       "r t y";
   }
 }
