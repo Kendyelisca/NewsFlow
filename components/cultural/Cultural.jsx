@@ -9,12 +9,12 @@ import Link from "next/link";
 
 const Cultural = () => {
   const [culturalArticles, setCulturalArticles] = useState([]);
-
+  const apiKey = process.env.NEXT_PUBLIC_API_KEY;
   useEffect(() => {
     const fetchCulturalArticles = async () => {
       try {
         const response = await axios.get(
-          "https://gnews.io/api/v4/search?q=entertainment art&lang=en&apikey=4bc79dae18ef7c43af7319c6e58bfa22"
+          `https://gnews.io/api/v4/search?q=entertainment art&lang=en&apikey=${apiKey}`
         );
 
         if (response.data && response.data.articles) {

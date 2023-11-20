@@ -1,9 +1,10 @@
 import Availab from "@/components/availability/Availab";
+import CulturalSearch from "@/components/culturalSearch/CulturalSearch";
 
 const page = () => {
   return (
     <div>
-      <Availab name="Entertainment and arts search" />
+      <CulturalSearch />
     </div>
   );
 };

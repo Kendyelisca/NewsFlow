@@ -1,0 +1,23 @@
+.sub-contain {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    padding-left: 10px;
+    padding-right: 10px;
+    gap: 20px;
+}
+
+
+
+.most-card {
+    max-width: 250px;
+}
+
+@media (max-width: 540px) {
+    .most-card {
+        max-width: 400px;
+    }
+}

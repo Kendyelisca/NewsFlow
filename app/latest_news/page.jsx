@@ -1,4 +1,3 @@
-import Availab from "@/components/availability/Availab";
 import Search_latest from "@/components/latest-news-search/Search_latest";
 
 const page = () => {
