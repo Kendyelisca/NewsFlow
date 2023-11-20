@@ -1,10 +1,11 @@
 import Availab from "@/components/availability/Availab";
+import FullStory from "@/components/full-story/FullStory";
 import React from "react";
 
 const Stories = () => {
   return (
     <div>
-      <Availab name={"Stories"} />
+      <FullStory />
     </div>
   );
 };

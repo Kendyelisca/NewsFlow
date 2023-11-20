@@ -2,20 +2,19 @@
 
 import { useState } from "react";
 import axios from "axios";
-import { useNewsContext } from "@/contexts/newsContext";
 import "./newsForm.css";
 
 const NewsForm = ({ toggleForm }) => {
   const [formData, setFormData] = useState({
     title: "",
     image: "",
-    link: "", // Changed from formData.url to formData.link
+    url: "",
     description: "",
-    timestamp: new Date().toISOString(),
   });
 
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false); // Add state for submission status
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -25,7 +24,7 @@ const NewsForm = ({ toggleForm }) => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     // Validate title and description
@@ -34,20 +33,28 @@ const NewsForm = ({ toggleForm }) => {
       return;
     }
 
-    // Assuming you have a backend endpoint to handle the form data submission
-    axios
-      .post("your-backend-api-endpoint", formData)
-      .then((response) => {
-        // Handle success, maybe reset the form or do any necessary actions
-        console.log("Form submitted successfully");
-        setSuccessMessage("Story shared successfully");
-        toggleForm(); // Close the form after successful submission
-      })
-      .catch((error) => {
-        // Handle error
-        console.error("Error submitting form: ", error);
-        setErrorMessage("Please try again the 25th of November.");
-      });
+    // Set isSubmitting to true to indicate the submission is in progress
+    setIsSubmitting(true);
+
+    try {
+      // Assuming you have a backend endpoint to handle the form data submission
+      const response = await axios.post(
+        "https://newsflow-backend.onrender.com/stories",
+        formData
+      );
+
+      // Handle success, maybe reset the form or do any necessary actions
+      console.log("Form submitted successfully");
+      setSuccessMessage("Story shared successfully");
+      toggleForm(); // Close the form after successful submission
+    } catch (error) {
+      // Handle error
+      console.error("Error submitting form: ", error);
+      setErrorMessage("Failed to submit. Please try again.");
+    } finally {
+      // Set isSubmitting back to false whether the submission was successful or not
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -80,16 +87,16 @@ const NewsForm = ({ toggleForm }) => {
           <input
             type="text"
             name="image"
-            placeholder="Image URL(optional):"
+            placeholder="Image URL:"
             value={formData.image}
             onChange={handleInputChange}
           />
 
           <input
             type="text"
-            name="link"
-            placeholder="Link(optional):"
-            value={formData.link}
+            name="url"
+            placeholder="Link:"
+            value={formData.url}
             onChange={handleInputChange}
           />
 
@@ -103,8 +110,9 @@ const NewsForm = ({ toggleForm }) => {
           <button
             type="submit"
             className="bg-red-800 p-2 rounded-xl text-white hover:bg-red-700"
+            disabled={isSubmitting} // Disable the button when submitting
           >
-            Submit
+            {isSubmitting ? "Submitting..." : "Submit"}
           </button>
         </form>
       </div>
