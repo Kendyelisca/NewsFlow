@@ -1,67 +1,69 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import { useEffect, useState } from "react";
 import { formatDistanceToNow } from "date-fns";
-import "./latest.css";
+import axios from "axios";
+import "./CulturalSearch.css";
 import SearchLoader from "../loader/SearchLoader";
 
-const Search_latest = () => {
+const CulturalSearch = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [noResults, setNoResults] = useState(false);
   const apiKey = process.env.NEXT_PUBLIC_API_KEY;
-  useEffect(() => {
-    setLoading(true);
 
-    if (searchTerm.trim() === "") {
-      // If the search term is empty, show the latest news
-      axios
-        .get(
-          `https://gnews.io/api/v4/top-headlines?category=general&lang=en&apikey=${apiKey}`
-        )
-        .then((response) => {
-          const articleData = response.data.articles.slice(0, 10); // Get the first 30 articles
-          setSearchResults(articleData);
-          setLoading(false);
-        })
-        .catch(() => setLoading(false));
-    } else {
-      // If there's a search term, perform a search
-      axios
-        .get(
-          `https://gnews.io/api/v4/search?q=${searchTerm}&lang=en&apikey=${apiKey}`
-        )
-        .then((response) => {
+  useEffect(() => {
+    const fetchCulturalArticles = async () => {
+      setLoading(true);
+      setNoResults(false);
+
+      try {
+        let url = `https://gnews.io/api/v4/top-headlines?category=entertainment&lang=en&apikey=${apiKey}`;
+
+        if (searchTerm.trim() !== "") {
+          // If there's a search term, perform a search
+          url = `https://gnews.io/api/v4/search?q=${searchTerm}&lang=en&apikey=${apiKey}`;
+        }
+
+        const response = await axios.get(url);
+
+        if (response.data && response.data.articles) {
           setSearchResults(response.data.articles);
-          setLoading(false);
-        })
-        .catch(() => setLoading(false));
-    }
+          setNoResults(response.data.articles.length === 0);
+        }
+      } catch (error) {
+        console.error("Error fetching cultural articles: ", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchCulturalArticles();
   }, [searchTerm]);
 
   return (
     <div>
       <h2 className="font-bold text-2xl md:text-2xl lg:text-4xl text-center pb-5">
-        Latest News
+        Entertainment and Arts
       </h2>
-      <div className="search-form">
+
+      <div className="search-form-cult">
         <input
           type="text"
-          placeholder="Search news..."
+          placeholder="Search articles..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
       </div>
+
       {loading && <SearchLoader />}
-      <div className="search-results">
-        {searchResults.length === 0 && !loading && (
-          <p className="no-results-message pb-48">
-            No results found for "{searchTerm}"
-          </p>
-        )}
-        {searchResults.map((article) => (
-          <div key={article.url} className="article-search">
+
+      {noResults && !loading && <div>No results found</div>}
+
+      <div className="cult">
+        {searchResults.map((article, index) => (
+          <div key={index} className="cul-content">
             <a href={article.url} target="_blank">
               <img src={article.image} alt={article.title} />
               <div className="article-details">
@@ -73,7 +75,7 @@ const Search_latest = () => {
                   <p>
                     {formatDistanceToNow(new Date(article.publishedAt))} ago
                   </p>
-                </div>
+                </div>{" "}
                 <div className="flex flex-col gap-3">
                   <h3 className="font-bold">{article.title}</h3>
                   <p>{article.description}</p>
@@ -88,4 +90,4 @@ const Search_latest = () => {
   );
 };
 
-export default Search_latest;
+export default CulturalSearch;

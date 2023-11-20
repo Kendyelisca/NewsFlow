@@ -6,15 +6,15 @@ import "./TopBusiness.css";
 import Loader from "../loader/Loader";
 
 const TopBusiness = () => {
-  const apiKey = process.env.API_KEY;
+  console.log("All Environment Variables:", process.env);
+  const apiKey = process.env.NEXT_PUBLIC_API_KEY;
   const [topNews, setTopNews] = useState(null);
   const [loading, setLoading] = useState(true);
 
   const fetchTopNews = () => {
+    console.log("API Key:", apiKey);
     axios
-      .get(
-        "https://gnews.io/api/v4/search?q=example&apikey=4bc79dae18ef7c43af7319c6e58bfa22"
-      )
+      .get(`https://gnews.io/api/v4/search?q=example&apikey=${apiKey}`)
       .then((response) => {
         if (response.data.articles && response.data.articles.length > 0) {
           setTopNews(response.data.articles[0]);
