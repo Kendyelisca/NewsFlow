@@ -86,19 +86,6 @@ const LatestNews = () => {
                   <p className="text-sm">
                     {formatDistanceToNow(new Date(article.publishedAt))} ago
                   </p>
-                  <FontAwesomeIcon
-                    icon={faBookmark}
-                    className="save-icon"
-                    // icon={
-                    // isArticleSaved(article)
-                    //  ? ["fas", "bookmark"]
-                    // : ["far", "bookmark"]
-                    // }
-                    //className={
-                    //isArticleSaved(article) ? "save-icon-red" : "save-icon"
-                    // }
-                    // onClick={() => handleSaveClick(article)}
-                  />
                 </div>
                 <h3 className="font-bold">{article.title}</h3>
               </div>
