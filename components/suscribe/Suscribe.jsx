@@ -64,7 +64,7 @@ const Subscribe = () => {
         />
         <button
           type="submit"
-          className="bg-red-800 text-white p-2 pl-4 pr-4 hover:bg-red-700"
+          className="bg-red-800 text-white p-2 pl-2 pr-2 hover:bg-red-700"
           disabled={submitting} // Disable the button while submitting
         >
           {submitting ? "Subscribing..." : "Subscribe"}
