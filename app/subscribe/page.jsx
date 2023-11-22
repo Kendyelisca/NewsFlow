@@ -1,10 +1,10 @@
-import Availab from "@/components/availability/Availab";
+import Register from "@/components/register/Register";
 import React from "react";
 
 const Subscription = () => {
   return (
     <div>
-      <Availab name={"Subscription"} />
+      <Register />
     </div>
   );
 };
