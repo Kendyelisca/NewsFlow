@@ -23,6 +23,7 @@ font-size: 20px;
 .sub-form button {
     border-radius: 0px 10px 10px 0px;
     height: 50px;
+    overflow-x: auto;
 }
 
 @media (max-width: 785px) {
@@ -30,7 +31,8 @@ font-size: 20px;
         padding: 20px;
     }
     .sub-form input {
-        max-width: 220px;
+        max-width: 200px;
     }
+  
 }
 
