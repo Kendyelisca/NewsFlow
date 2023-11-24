@@ -4,6 +4,7 @@ import { useState } from "react";
 import axios from "axios";
 import { FaGoogle, FaGithub } from "react-icons/fa";
 import "./register.css";
+import Link from "next/link";
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -25,7 +26,7 @@ const Register = () => {
 
     try {
       const response = await axios.post(
-        "https://fakeapi.com/register",
+        "https://newsflow-backend.onrender.com/users",
         formData
       );
       console.log("Registration successful:", response.data);
@@ -101,7 +102,17 @@ const Register = () => {
           <button type="submit">Register</button>
         </div>
         {error && <p className="error-message text-red-700">{error}</p>}
-        {successMessage && <p className="success-message">{successMessage}</p>}
+        {successMessage && (
+          <p className="success-message text-green-600">{successMessage}</p>
+        )}
+        <div>
+          <p className="text-center">
+            Already have an account?{" "}
+            <Link href="/login" className=" text-blue-500">
+              SignIn
+            </Link>
+          </p>
+        </div>
         <p className="advantages">
           By registering, you get the following advantages:
         </p>
@@ -129,11 +140,6 @@ const Register = () => {
           </a>
           <a href="#" className="github-icon" title="Login with GitHub">
             <FaGithub />
-          </a>
-        </div>
-        <div className="forgot-password">
-          <a href="#" title="Forgot Password">
-            Forgot your password?
           </a>
         </div>
       </form>
