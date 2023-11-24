@@ -1,6 +1,6 @@
-/* Register.css */
+/* signIn.css */
 
-.register-container {
+.login-container {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -8,21 +8,19 @@
   padding: 20px;
 }
 
-.register-form {
+.login-form {
   max-width: 600px;
   padding: 20px;
-  
   border: 1px solid #ccc;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  
 }
 
 .form-group {
   margin-bottom: 15px;
   margin-top: 20px;
 }
-
-
 
 .form-group input {
   width: 100%;
@@ -44,49 +42,36 @@
 }
 
 .form-group button:hover {
-  background-color: rgb(162, 55, 45);
+  background-color: rgb(170, 59, 48);
 }
 
-.advantages {
-  margin-top: 20px;
-}
-
-.advantages-list {
-  list-style-type: none;
-  padding: 0;
-}
-
-.advantages-list li {
-  margin-bottom: 5px;
+.error-message,
+.success-message {
+  margin-top: 10px;
+  font-size: 14px;
 }
 
 .social-login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin-top: 20px;
-  text-align: center;
+}
+
+.social-login span {
+  margin-right: 10px;
 }
 
 .google-icon,
 .github-icon {
-  display: inline-block;
-  margin: 0 10px;
   font-size: 24px;
-  color: #4285f4; /* Google Blue */
-}
-
-.github-icon {
-  color: #333;
+  margin-right: 10px;
+  color: #4285f4;
 }
 
 .forgot-password {
+  margin-top: 20px;
   text-align: center;
-  margin-top: 10px;
-}
-
-.forgot-password a {
-  color: rgb(148, 50, 41);
-  text-decoration: none;
-}
-
-.forgot-password a:hover {
-  text-decoration: underline;
+  font-size: 14px;
+  color: #888;
 }
