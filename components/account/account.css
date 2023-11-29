@@ -1,0 +1,54 @@
+/* Account.css */
+
+.account-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.account-error {
+  color: red;
+  text-align: center;
+  padding-bottom: 350px;
+}
+
+.account-title {
+  color: #333;
+}
+
+.account-info {
+  margin-bottom: 20px;
+}
+
+.logout-button {
+  background-color: #f44336;
+  color: #fff;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.app-info {
+  margin-top: 20px;
+}
+
+.feedback-textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  outline: none;
+}
+
+.submit-feedback-button {
+  background-color: rgb(162, 26, 26);
+  color: #fff;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
