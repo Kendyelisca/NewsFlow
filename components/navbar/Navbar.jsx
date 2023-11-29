@@ -5,17 +5,24 @@ import { AiFillBell } from "react-icons/ai";
 import { AiFillSave } from "react-icons/ai";
 import { FaPenToSquare } from "react-icons/fa6";
 import { FaTimes, FaBars } from "react-icons/fa";
+import { FaUser } from "react-icons/fa";
 import "./navbar.css";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useNewsContext } from "@/contexts/newsContext";
 import NewsForm from "../form/NewsForm";
+import { UserContext } from "@/contexts/user-context";
+
 const MyNavbar = () => {
   const [isMenuOpen, setMenuOpen] = useState(false);
   const { isForm, toggleForm } = useNewsContext();
+  const { user, logout } = useContext(UserContext);
+  // Check if user is not null and has a username before logging it
+  console.log("UserContext - User:", user?.username || "No username available");
+  console.log("UserContext - Logout function:", logout); // Log logout function
+  // Check if user is not null and has a username before accessing it
+  const firstLetter = user?.username ? user.username[0].toUpperCase() : "";
 
-  console.log("isForm:", isForm);
   const toggleFormHandler = () => {
-    console.log("Toggling form...");
     toggleForm(); // Check if this function is being called
     toggleMenu();
   };
@@ -78,11 +85,30 @@ const MyNavbar = () => {
               <AiFillBell />
             </a>
           </b>
+          {user ? (
+            <div className="avatar">
+              <Link href="/user_account">
+                <span>{firstLetter}</span>
+              </Link>
+            </div>
+          ) : (
+            <div className="avatar">
+              <Link href="/login">
+                <FaUser />
+              </Link>
+            </div>
+          )}
         </div>
 
         {isMenuOpen && (
           <div className="menu-options">
-            {" "}
+            {user && (
+              <li>
+                <Link href="/user_account" className="font-bold">
+                  {user.username}
+                </Link>
+              </li>
+            )}
             <li>
               <Link href="/stories">Stories</Link>
             </li>

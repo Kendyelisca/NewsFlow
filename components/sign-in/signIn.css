@@ -9,7 +9,7 @@
 }
 
 .login-form {
-  max-width: 600px;
+  width: 600px;
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -74,4 +74,11 @@
   text-align: center;
   font-size: 14px;
   color: #888;
+}
+
+@media (max-width: 785px) {
+  .login-form {
+    max-width: 600px;
+  }
+
 }

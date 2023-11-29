@@ -14,6 +14,7 @@ const Register = () => {
     password: "",
   });
 
+  const [loading, setLoading] = useState(false); // New state for loading indicator
   const [error, setError] = useState(null);
   const [successMessage, setSuccessMessage] = useState(null);
 
@@ -23,6 +24,7 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true); // Set loading state on form submission
 
     try {
       const response = await axios.post(
@@ -40,11 +42,13 @@ const Register = () => {
       });
       setError(null);
       setSuccessMessage("Registration successful!");
+      setLoading(false); // Reset loading state on success
     } catch (error) {
       console.error("Error during registration:", error);
       // Display error message to the user
       setError("Registration failed. Please try again.");
       setSuccessMessage(null);
+      setLoading(false); // Reset loading state on error
     }
   };
 
@@ -99,7 +103,10 @@ const Register = () => {
           />
         </div>
         <div className="form-group">
-          <button type="submit">Register</button>
+          {/* Disable the button while loading */}
+          <button type="submit" disabled={loading}>
+            {loading ? "Registering..." : "Register"}
+          </button>
         </div>
         {error && <p className="error-message text-red-700">{error}</p>}
         {successMessage && (

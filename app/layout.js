@@ -3,6 +3,7 @@ import "./globals.css";
 import MyNavbar from "@/components/navbar/Navbar";
 import Myfooter from "@/components/footer/Footer";
 import { NewsContextProvider } from "@/contexts/newsContext";
+import { UserContextProvider } from "@/contexts/user-context";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,10 +17,12 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
         <NewsContextProvider>
-          {" "}
-          <MyNavbar />
-          {children}
-          <Myfooter />
+          <UserContextProvider>
+            {" "}
+            <MyNavbar />
+            {children}
+            <Myfooter />
+          </UserContextProvider>
         </NewsContextProvider>
       </body>
     </html>
