@@ -60,7 +60,7 @@ const SignIn = () => {
       <div className="login-container">
         <form onSubmit={handleSubmit} className="login-form">
           <h2 className="font-bold text-2xl md:text-2xl lg:text-4xl text-center pb-5">
-            Sign In to NewsFlow
+            Welcome back!
           </h2>
           <div className="form-group">
             <input

@@ -1,3 +1,7 @@
+.most-contain{
+margin-top: 80px;
+}
+
 .sub-contain {
     display: flex;
     flex-wrap: wrap;
@@ -9,8 +13,6 @@
     padding-right: 10px;
     gap: 20px;
 }
-
-
 
 .most-card {
     max-width: 250px;

@@ -3,10 +3,16 @@
 .navbar-container {
   display: flex;
   justify-content: space-between;
- padding-left: 50px;
+  position: fixed;
+  background-color: var(--background-color);
+  top: 0;
+  left: 0;
+  right: 0;
+  padding-left: 50px;
   padding-right: 50px; 
-  padding-bottom: 40px;
-  padding-top: 20px;
+  padding-bottom: 15px;
+  padding-top: 15px;
+  margin-bottom: 40px;
 }
 .navbar-container b {
   font-size: 16px;
