@@ -41,7 +41,7 @@ const Subscribe = () => {
   };
 
   return (
-    <div className="sus-container" id="subscribe">
+    <div className="sus-container" id="suscribe">
       <b className="font-bold text-red-800">NewsFlow</b>
       <p className="font-bold text-center">
         Let's subscribe so you don't miss the latest updates

@@ -42,7 +42,7 @@ const Search_latest = () => {
 
   return (
     <div>
-      <h2 className="font-bold text-2xl md:text-2xl lg:text-4xl text-center pb-5">
+      <h2 className="search-tit font-bold text-2xl md:text-2xl lg:text-4xl text-center pb-5">
         Latest News
       </h2>
       <div className="search-form">

@@ -44,7 +44,7 @@ const CulturalSearch = () => {
 
   return (
     <div>
-      <h2 className="font-bold text-2xl md:text-2xl lg:text-4xl text-center pb-5">
+      <h2 className="cult-tit font-bold text-2xl md:text-2xl lg:text-4xl text-center pb-5">
         Entertainment and Arts
       </h2>
 

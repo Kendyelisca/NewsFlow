@@ -1,6 +1,7 @@
 .availab-container {
     height: 100vh;
     padding: 50px;
+    margin-top: 80px;
     text-align: center;
 }
 @media (max-width: 785px) {
