@@ -18,14 +18,13 @@ const Subscribe = () => {
     event.preventDefault();
 
     try {
-      setSubmitting(true); // Set submitting to true while waiting for the API response
+      setSubmitting(true);
 
       const response = await axios.post(
         "https://newsflow-backend.onrender.com/mail",
-        {
-          email,
-        }
+        { email }
       );
+
       console.log("API response:", response.data);
 
       setEmail("");
@@ -34,9 +33,14 @@ const Subscribe = () => {
     } catch (error) {
       console.error("Error submitting form:", error);
       setSubmitted(false);
-      setErrorMessage("Subscription failed! Please try again.");
+
+      if (error.response && error.response.data && error.response.data.error) {
+        setErrorMessage(error.response.data.error);
+      } else {
+        setErrorMessage("Subscription failed! Please try again.");
+      }
     } finally {
-      setSubmitting(false); // Set submitting to false after API response or error
+      setSubmitting(false);
     }
   };
 
