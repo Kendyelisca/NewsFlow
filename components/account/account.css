@@ -1,5 +1,9 @@
 /* Account.css */
 
+.master-account{
+  margin-top: 80px;
+}
+
 .account-container {
   max-width: 600px;
   margin: 0 auto;
@@ -13,6 +17,7 @@
   color: red;
   text-align: center;
   padding-bottom: 350px;
+  padding-top: 80px;
 }
 
 .account-title {
