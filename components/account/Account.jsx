@@ -35,40 +35,42 @@ const Account = () => {
   };
 
   return (
-    <div className="account-container">
-      <h2 className="account-title">Account Information</h2>
-      <div className="account-info">
-        <div>
-          <strong>Username:</strong> {user.username}
+    <div className="master-account">
+      <div className="account-container">
+        <h2 className="account-title">Account Information</h2>
+        <div className="account-info">
+          <div>
+            <strong>Username:</strong> {user.username}
+          </div>
+          <div>
+            <strong>Name:</strong> {user.name || "Not provided"}
+          </div>
+          <div>
+            <strong>Email:</strong> {user.email || "Not provided"}
+          </div>
+          {/* Add more user information if available */}
         </div>
-        <div>
-          <strong>Name:</strong> {user.name || "Not provided"}
-        </div>
-        <div>
-          <strong>Email:</strong> {user.email || "Not provided"}
-        </div>
-        {/* Add more user information if available */}
-      </div>
-      <button className="logout-button" onClick={handleLogout}>
-        Logout
-      </button>
-      <div className="app-info">
-        <h3>We're Proud of Our App!</h3>
-        <p>
-          Thank you for being a part of our community. Your contribution makes
-          NewsFlow a better platform for everyone. If you have any suggestions
-          or feedback, please feel free to share them with us.
-        </p>
-        <textarea
-          placeholder="Type your feedback here..."
-          value={feedback}
-          onChange={handleFeedbackChange}
-          rows={4}
-          className="feedback-textarea"
-        />
-        <button className="submit-feedback-button" onClick={submitFeedback}>
-          Submit Feedback
+        <button className="logout-button" onClick={handleLogout}>
+          Logout
         </button>
+        <div className="app-info">
+          <h3>We're Proud of Our App!</h3>
+          <p>
+            Thank you for being a part of our community. Your contribution makes
+            NewsFlow a better platform for everyone. If you have any suggestions
+            or feedback, please feel free to share them with us.
+          </p>
+          <textarea
+            placeholder="Type your feedback here..."
+            value={feedback}
+            onChange={handleFeedbackChange}
+            rows={4}
+            className="feedback-textarea"
+          />
+          <button className="submit-feedback-button" onClick={submitFeedback}>
+            Submit Feedback
+          </button>
+        </div>
       </div>
     </div>
   );

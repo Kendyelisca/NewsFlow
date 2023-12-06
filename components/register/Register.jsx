@@ -52,6 +52,35 @@ const Register = () => {
     }
   };
 
+  // Render welcome message and login button if registration is successful
+  if (successMessage) {
+    return (
+      <div className="registration-success-container">
+        <div className="suscess-content">
+          {" "}
+          <p className="registration-success-message">
+            Welcome to the vibrant NewsFlow community! 🎉 We're thrilled to have
+            you on board as a valued member. Your presence enriches our
+            platform, and we look forward to sharing news, stories, and
+            experiences together.
+            <br />
+            <br />
+            Click the button below to log in and start exploring the diverse
+            world of information, stories, and discussions awaiting you.
+          </p>
+          <div className="flex justify-center">
+            {" "}
+            <Link href="/login">
+              <button className="login-button bg-red-800 text-white p-2 rounded-md mt-4">
+                Login
+              </button>
+            </Link>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="register-container">
       <form onSubmit={handleSubmit} className="register-form">
