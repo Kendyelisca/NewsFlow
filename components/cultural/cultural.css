@@ -10,9 +10,9 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 10px; /* Adjust the gap as needed */
   grid-template-areas:
-    "a a b"
-    "a a e"
-    "r t y";
+    "e e r"
+    "e e a"
+    "b t y";
 }
 
 .cult-1 li {
@@ -46,6 +46,10 @@
 }
 .item-5 {
   grid-area: e;
+}
+
+.item-5 p {
+  padding-top: 20px;
 }
 .item-6 {
   grid-area: b;
