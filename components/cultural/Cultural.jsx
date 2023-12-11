@@ -44,10 +44,10 @@ const Cultural = () => {
       <ul className="cult-1">
         {culturalArticles.map((article, index) => (
           <li key={index} className={`item-${index + 1}`}>
-            <a href={article.url} target="_blank">
+            <Link href="/entertainment_&_arts">
               <img src={article.image} alt={article.title} />
               <p>{article.title}</p>
-            </a>
+            </Link>
           </li>
         ))}
       </ul>

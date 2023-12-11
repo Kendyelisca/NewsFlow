@@ -81,6 +81,13 @@ const CulturalSearch = () => {
                   <p>{article.description}</p>
                   <p>{article.content}</p>
                 </div>
+                <a
+                  href={article.url}
+                  target="_blank"
+                  className="font-bold text-red-800"
+                >
+                  Read more...
+                </a>
               </div>
             </a>
           </div>

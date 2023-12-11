@@ -62,25 +62,26 @@ const Search_latest = () => {
         )}
         {searchResults.map((article) => (
           <div key={article.url} className="article-search">
-            <a href={article.url} target="_blank">
-              <img src={article.image} alt={article.title} />
-              <div className="article-details">
-                <div className="flex gap-3 pb-3 justify-center">
-                  <p className="font-bold text-red-800">
-                    {article.source.name}
-                  </p>
-                  <b>.</b>
-                  <p>
-                    {formatDistanceToNow(new Date(article.publishedAt))} ago
-                  </p>
-                </div>
-                <div className="flex flex-col gap-3">
-                  <h3 className="font-bold">{article.title}</h3>
-                  <p>{article.description}</p>
-                  <p>{article.content}</p>
-                </div>
+            <img src={article.image} alt={article.title} />
+            <div className="article-details">
+              <div className="flex gap-3 pb-3 justify-center">
+                <p className="font-bold text-red-800">{article.source.name}</p>
+                <b>.</b>
+                <p>{formatDistanceToNow(new Date(article.publishedAt))} ago</p>
               </div>
-            </a>
+              <div className="flex flex-col gap-3">
+                <h3 className="font-bold">{article.title}</h3>
+                <p>{article.description}</p>
+                <p>{article.content}</p>
+              </div>
+              <a
+                href={article.url}
+                target="_blank"
+                className="font-bold text-red-800"
+              >
+                Read more...
+              </a>
+            </div>
           </div>
         ))}
       </div>

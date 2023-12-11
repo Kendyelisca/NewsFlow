@@ -75,7 +75,7 @@ const LatestNews = () => {
       <div className="late-container">
         {articles.map((article) => (
           <div key={article.url} className="article-card">
-            <a href={article.url} target="_blank">
+            <Link href="/latest_news">
               <img src={article.image} alt={article.title} />
               <div className="article-details ">
                 <div className="flex gap-3 pb-3 justify-center">
@@ -89,7 +89,7 @@ const LatestNews = () => {
                 </div>
                 <h3 className="font-bold">{article.title}</h3>
               </div>
-            </a>
+            </Link>
           </div>
         ))}
       </div>
