@@ -6,13 +6,11 @@ import "./TopBusiness.css";
 import Loader from "../loader/Loader";
 
 const TopBusiness = () => {
-  console.log("All Environment Variables:", process.env);
   const apiKey = process.env.NEXT_PUBLIC_API_KEY;
   const [topNews, setTopNews] = useState(null);
   const [loading, setLoading] = useState(true);
 
   const fetchTopNews = () => {
-    console.log("API Key:", apiKey);
     axios
       .get(`https://gnews.io/api/v4/search?q=example&apikey=${apiKey}`)
       .then((response) => {

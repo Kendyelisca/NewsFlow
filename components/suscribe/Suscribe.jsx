@@ -9,6 +9,7 @@ const Subscribe = () => {
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false); // New state to track the submission process
   const [errorMessage, setErrorMessage] = useState("");
+  const baseUrl = process.env.NEXT_PUBLIC_BASEURL;
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
@@ -20,10 +21,7 @@ const Subscribe = () => {
     try {
       setSubmitting(true);
 
-      const response = await axios.post(
-        "https://newsflow-backend.onrender.com/mail",
-        { email }
-      );
+      const response = await axios.post(`${baseUrl}/mail`, { email });
 
       console.log("API response:", response.data);
 

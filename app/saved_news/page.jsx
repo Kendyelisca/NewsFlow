@@ -1,12 +1,12 @@
-import Availab from "@/components/availability/Availab";
+import SaveNews from "@/components/save-news/SaveNews";
 import React from "react";
 
-const SavedNews = () => {
+const NewsSave = () => {
   return (
     <div>
-      <Availab name={"Saved News"} />
+      <SaveNews />
     </div>
   );
 };
 
-export default SavedNews;
+export default NewsSave;

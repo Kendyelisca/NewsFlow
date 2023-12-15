@@ -19,6 +19,7 @@ const SignIn = () => {
   const [error, setError] = useState(null);
   const [successMessage, setSuccessMessage] = useState(null);
   const [existingUser, setExistingUser] = useState(false);
+  const baseUrl = process.env.NEXT_PUBLIC_BASEURL;
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -44,10 +45,7 @@ const SignIn = () => {
     setLoading(true);
 
     try {
-      const response = await axios.post(
-        "https://newsflow-backend.onrender.com/users/login",
-        formData
-      );
+      const response = await axios.post(`${baseUrl}/users/login`, formData);
 
       console.log("Login successful:", response.data);
       handleLoginSuccess(response.data);
