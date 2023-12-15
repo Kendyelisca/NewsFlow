@@ -17,7 +17,7 @@ const Register = () => {
   const [loading, setLoading] = useState(false); // New state for loading indicator
   const [error, setError] = useState(null);
   const [successMessage, setSuccessMessage] = useState(null);
-
+  const baseUrl = process.env.NEXT_PUBLIC_BASEURL;
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -27,10 +27,7 @@ const Register = () => {
     setLoading(true); // Set loading state on form submission
 
     try {
-      const response = await axios.post(
-        "https://newsflow-backend.onrender.com/users",
-        formData
-      );
+      const response = await axios.post(`${baseUrl}/users`, formData);
       console.log("Registration successful:", response.data);
 
       // Clear form and errors on successful registration

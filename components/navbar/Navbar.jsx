@@ -11,17 +11,15 @@ import { useContext, useState } from "react";
 import { useNewsContext } from "@/contexts/newsContext";
 import NewsForm from "../form/NewsForm";
 import { UserContext } from "@/contexts/user-context";
-
+import { useSaveContext } from "@/contexts/saveContext";
 const MyNavbar = () => {
   const [isMenuOpen, setMenuOpen] = useState(false);
   const { isForm, toggleForm } = useNewsContext();
   const { user, logout } = useContext(UserContext);
-  // Check if user is not null and has a username before logging it
-  console.log("UserContext - User:", user?.username || "No username available");
-  console.log("UserContext - Logout function:", logout); // Log logout function
+  const { isNewArticles, isNewStories } = useSaveContext();
   // Check if user is not null and has a username before accessing it
   const firstLetter = user?.username ? user.username[0].toUpperCase() : "";
-
+  console.log("red dot state is", isNewStories);
   const toggleFormHandler = () => {
     toggleForm(); // Check if this function is being called
     toggleMenu();
@@ -45,6 +43,7 @@ const MyNavbar = () => {
             <li>
               <Link href="/stories">
                 <b>Stories</b>
+                {isNewStories && <span className="red-dot-big-sc"></span>}
               </Link>
             </li>
             <li>
@@ -76,8 +75,9 @@ const MyNavbar = () => {
             <p>write</p>
           </b>
           <b>
-            <Link href="/saved_news">
+            <Link href="/saved_news" className="flex">
               <AiFillSave />
+              {isNewArticles && <span className="red-dot"></span>}
             </Link>
           </b>
           <b>
@@ -109,8 +109,17 @@ const MyNavbar = () => {
                 </Link>
               </li>
             )}
+            {!user && (
+              <li>
+                <Link href="/login" className="font-bold">
+                  Login
+                </Link>
+              </li>
+            )}
             <li>
-              <Link href="/stories">Stories</Link>
+              <Link href="/stories">
+                Stories {isNewStories && <span className="red-dot"></span>}
+              </Link>
             </li>
             <li>
               <Link href="/creator">Creator</Link>
@@ -133,6 +142,7 @@ const MyNavbar = () => {
             <li>
               <Link href="/saved_news">
                 <AiFillSave />
+                {isNewArticles && <span className="red-dot"></span>}
               </Link>
             </li>
             <li>

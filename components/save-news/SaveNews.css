@@ -1,0 +1,72 @@
+/* SaveNews.css */
+
+.save-news-container {
+  padding: 50px;
+  margin-top: 75px;
+}
+
+.login-message,
+.no-saved-news-message {
+  font-size: 16px;
+  font-weight: bold;
+  color: #841212; /* Red color */
+  margin-bottom: 350px;
+  margin-top: 80px;
+  text-align: center;
+}
+
+.saved-news-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.saved-news-item {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.news-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.news-details {
+  padding: 15px;
+}
+
+.news-details h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.news-details p {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.news-details a {
+  color: #87220c; 
+  text-decoration: none;
+  font-weight: bold;
+  display: inline-block;
+  padding: 5px 10px;
+  background-color: #eee;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.news-details a:hover {
+  background-color:  #87220c;
+  color: #fff;
+}
+
+@media (max-width: 785px) {
+  .save-news-container {
+    padding: 20px;
+  }
+}

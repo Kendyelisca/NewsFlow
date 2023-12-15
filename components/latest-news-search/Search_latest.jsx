@@ -1,16 +1,23 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
+import { AiFillSave } from "react-icons/ai";
 import { formatDistanceToNow } from "date-fns";
 import "./latest.css";
 import SearchLoader from "../loader/SearchLoader";
-
+import { useSaveContext } from "@/contexts/saveContext";
+import { UserContext } from "@/contexts/user-context";
 const Search_latest = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [loading, setLoading] = useState(false);
   const apiKey = process.env.NEXT_PUBLIC_API_KEY;
+
+  const { savedArticles, saveArticle, unsaveArticle, isArticleSaved } =
+    useSaveContext();
+  const { user } = useContext(UserContext);
+
   useEffect(() => {
     setLoading(true);
 
@@ -65,22 +72,50 @@ const Search_latest = () => {
             <img src={article.image} alt={article.title} />
             <div className="article-details">
               <div className="flex gap-3 pb-3 justify-center">
-                <p className="font-bold text-red-800">{article.source.name}</p>
+                <p className="font-bold text-red-800 text-sm">
+                  {article.source.name}
+                </p>
                 <b>.</b>
-                <p>{formatDistanceToNow(new Date(article.publishedAt))} ago</p>
+                <p className="text-sm">
+                  {formatDistanceToNow(new Date(article.publishedAt))} ago
+                </p>
               </div>
+              <div className="flex justify-center gap-4 mb-2">
+                {" "}
+                <a
+                  onClick={() => {
+                    if (!user) {
+                      // If there is no user
+                      alert("Login to save the article");
+                      return;
+                    }
+                    if (isArticleSaved(article.url)) {
+                      unsaveArticle(article.url);
+                    } else {
+                      saveArticle(article);
+                    }
+                  }}
+                >
+                  {isArticleSaved(article.url) ? (
+                    <span className="flex justify-center items-center gap-2">
+                      <p>Unsave</p> <AiFillSave />
+                    </span>
+                  ) : (
+                    <span className="flex justify-center items-center gap-2">
+                      <p>Save</p> <AiFillSave />
+                    </span>
+                  )}
+                </a>
+                <a href={article.url} target="_blank">
+                  Read more
+                </a>
+              </div>
+
               <div className="flex flex-col gap-3">
                 <h3 className="font-bold">{article.title}</h3>
                 <p>{article.description}</p>
                 <p>{article.content}</p>
               </div>
-              <a
-                href={article.url}
-                target="_blank"
-                className="font-bold text-red-800"
-              >
-                Read more...
-              </a>
             </div>
           </div>
         ))}

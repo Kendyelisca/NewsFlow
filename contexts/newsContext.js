@@ -21,7 +21,7 @@ export const useNewsContext = () => {
 
 export const NewsContextProvider = ({ children }) => {
   const contextValue = useNewsContext();
-  console.log("Context Value:", contextValue);
+
   return (
     <NewsContext.Provider value={contextValue}>{children}</NewsContext.Provider>
   );
