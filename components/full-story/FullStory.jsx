@@ -79,6 +79,10 @@ const FullStory = () => {
     // }
   };
 
+  const handleFollow = async (storyId) => {
+    alert("we are working on this feature.");
+  };
+
   return (
     <div>
       {loading && <SearchLoader />}
@@ -116,6 +120,12 @@ const FullStory = () => {
                   style={{ color: liked ? "green" : "black" }}
                 >
                   like <FaThumbsUp size={20} color="green" />0
+                </div>
+                <div
+                  onClick={() => handleFollow(story.id)}
+                  className="border rounded-lg pl-2 pr-2  border-white-700 bg-red-700 text-white font-bold cursor-pointer hover:bg-white hover:border-red-700 hover:text-red-700 "
+                >
+                  Follow
                 </div>
               </div>
               {/* <a href={story.url} target="_blank" rel="noopener noreferrer">
