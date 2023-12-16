@@ -93,7 +93,7 @@
   .footer-content {
     padding: 15px;
     flex-direction: column;
-    gap: 50px;
+    gap: 100px;
   }
 
   .divider {

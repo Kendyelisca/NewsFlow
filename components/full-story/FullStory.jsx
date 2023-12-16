@@ -28,16 +28,20 @@ const FullStory = () => {
     const fetchStoryData = async () => {
       try {
         // Fetch story data including likes and comments
-        const response = await axios.get(`${baseUrl}/stories`); // Replace 1 with the actual story ID
+        const response = await axios.get(`${baseUrl}/stories`);
 
-        if (response.data) {
-          setStoryData(response.data);
-          console.log("the test is ongoing", response.data[0].likes);
+        if (response.data && response.data.length > 0) {
+          const sortedNews = response.data.sort((a, b) => {
+            return new Date(b.createdAt) - new Date(a.createdAt);
+          });
+          setStoryData(sortedNews);
           setNewStories(false);
-          setLikes(response.data.likes);
-          setComments(response.data.comments);
+
+          console.log("Sorted Story Data: ", sortedNews);
         } else {
-          console.error("Invalid data format received from the API");
+          console.error(
+            "No data received from the API or the data array is empty"
+          );
         }
       } catch (error) {
         console.error("Error fetching full story data: ", error);
