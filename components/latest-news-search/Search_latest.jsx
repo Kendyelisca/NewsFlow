@@ -14,8 +14,13 @@ const Search_latest = () => {
   const [loading, setLoading] = useState(false);
   const apiKey = process.env.NEXT_PUBLIC_API_KEY;
 
-  const { savedArticles, saveArticle, unsaveArticle, isArticleSaved } =
-    useSaveContext();
+  const {
+    loadingStates,
+    savedArticles,
+    saveArticle,
+    unsaveArticle,
+    isArticleSaved,
+  } = useSaveContext();
   const { user } = useContext(UserContext);
 
   useEffect(() => {
@@ -81,31 +86,37 @@ const Search_latest = () => {
                 </p>
               </div>
               <div className="flex justify-center gap-4 mb-2">
-                {" "}
-                <a
-                  onClick={() => {
-                    if (!user) {
-                      // If there is no user
-                      alert("Login to save the article");
-                      return;
-                    }
-                    if (isArticleSaved(article.url)) {
-                      unsaveArticle(article.url);
-                    } else {
-                      saveArticle(article);
-                    }
-                  }}
-                >
-                  {isArticleSaved(article.url) ? (
-                    <span className="flex justify-center items-center gap-2">
-                      <p>Unsave</p> <AiFillSave />
-                    </span>
-                  ) : (
-                    <span className="flex justify-center items-center gap-2">
-                      <p>Save</p> <AiFillSave />
-                    </span>
-                  )}
-                </a>
+                <button disabled={loadingStates[article.url]}>
+                  {" "}
+                  <a
+                    onClick={() => {
+                      if (!user) {
+                        // If there is no user
+                        alert("Login to save the article");
+                        return;
+                      }
+                      if (isArticleSaved(article.url)) {
+                        unsaveArticle(article.url);
+                      } else {
+                        saveArticle(article);
+                      }
+                    }}
+                  >
+                    {isArticleSaved(article.url) ? (
+                      <span className="flex justify-center items-center gap-2">
+                        <p>
+                          {loadingStates[article.url] ? "Unsaving" : "Unsave"}
+                        </p>{" "}
+                        <AiFillSave />
+                      </span>
+                    ) : (
+                      <span className="flex justify-center items-center gap-2">
+                        <p>{loadingStates[article.url] ? "Saving" : "Save"}</p>{" "}
+                        <AiFillSave />
+                      </span>
+                    )}
+                  </a>
+                </button>{" "}
                 <a href={article.url} target="_blank">
                   Read more
                 </a>

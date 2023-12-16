@@ -10,7 +10,7 @@ import { useSaveContext } from "@/contexts/saveContext"; // Import the useSaveCo
 const SaveNews = () => {
   const { user } = useContext(UserContext);
   const [savedNews, setSavedNews] = useState([]);
-  const { unsaveArticle, setNewArticles } = useSaveContext(); // Use the unsaveArticle function from SaveContext
+  const { loadingStates, unsaveArticle, setNewArticles } = useSaveContext(); // Use the unsaveArticle function from SaveContext
   const baseUrl = process.env.NEXT_PUBLIC_BASEURL;
 
   useEffect(() => {
@@ -106,7 +106,10 @@ const SaveNews = () => {
                   <a href={news.url} target="_blank" rel="noopener noreferrer">
                     Read More
                   </a>
-                  <a onClick={() => handleUnsave(news.url)}>Unsave</a>
+
+                  <a onClick={() => handleUnsave(news.url)}>
+                    {loadingStates[news.url] ? "Unsaving" : "Unsave"}
+                  </a>
                 </div>
                 <h3>{news.title}</h3>
                 <p>{news.description}</p>
