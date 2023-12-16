@@ -10,9 +10,9 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 10px; /* Adjust the gap as needed */
   grid-template-areas:
-    "e e r"
+    "e e t"
     "e e a"
-    "b t y";
+    "b r y";
 }
 
 .cult-1 li {
@@ -70,5 +70,7 @@
       "e e e"
       "y y y"
       "b t r";
+  }
+  .item-3 {
   }
 }

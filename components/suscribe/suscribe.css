@@ -29,6 +29,7 @@ font-size: 20px;
 @media (max-width: 785px) {
     .sus-container {
         padding: 20px;
+        margin-top: 80px;
     }
     .sub-form input {
         max-width: 200px;
