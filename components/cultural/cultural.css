@@ -68,7 +68,7 @@
     grid-template-areas:
       "a a a"
       "e e e"
-      "b b b"
-      "r t y";
+      "y y y"
+      "b t r";
   }
 }
