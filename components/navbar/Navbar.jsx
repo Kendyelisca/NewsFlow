@@ -41,23 +41,23 @@ const MyNavbar = () => {
             </li>
             <li className="bar"></li>
             <li>
-              <Link href="/stories">
+              <Link href="/stories" className="effect">
                 <b>Stories</b>
                 {isNewStories && <span className="red-dot-big-sc"></span>}
               </Link>
             </li>
             <li>
-              <Link href="/creator">
+              <Link href="/creator" className="effect">
                 <b>Creator</b>
               </Link>
             </li>
             <li>
-              <Link href="/community">
+              <Link href="/community" className="effect">
                 <b>Community</b>
               </Link>
             </li>
             <li>
-              <Link href="/subscribe">
+              <Link href="/subscribe" className="effect">
                 <b>Subscribe</b>
               </Link>
             </li>
@@ -111,24 +111,30 @@ const MyNavbar = () => {
             )}
             {!user && (
               <li>
-                <Link href="/login" className="font-bold">
+                <Link href="/login" className="font-bold effect">
                   Login
                 </Link>
               </li>
             )}
             <li>
-              <Link href="/stories">
+              <Link href="/stories" className="effect">
                 Stories {isNewStories && <span className="red-dot"></span>}
               </Link>
             </li>
             <li>
-              <Link href="/creator">Creator</Link>
+              <Link href="/creator" className="effect">
+                Creator
+              </Link>
             </li>
             <li>
-              <Link href="/community">Community</Link>
+              <Link href="/community" className="effect">
+                Community
+              </Link>
             </li>
             <li>
-              <Link href="/subscribe">Subscribe</Link>
+              <Link href="/subscribe" className="effect">
+                Subscribe
+              </Link>
             </li>
             <li>
               <a
