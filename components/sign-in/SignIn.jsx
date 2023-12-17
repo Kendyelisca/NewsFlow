@@ -4,6 +4,7 @@ import React, { useState, useContext } from "react";
 import axios from "axios";
 import { FaGoogle, FaGithub } from "react-icons/fa";
 import Link from "next/link";
+import Cookies from "js-cookie"; // Import js-cookie
 import { UserContext } from "@/contexts/user-context";
 import "./signIn.css";
 
@@ -26,7 +27,7 @@ const SignIn = () => {
   };
 
   const handleLoginSuccess = (userData) => {
-    localStorage.setItem("token", userData.token);
+    Cookies.set("token", userData.token); // Set the token in the cookie
     setUser(userData.user);
     setFormData({
       email: "",

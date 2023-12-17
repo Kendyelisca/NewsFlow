@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import axios from "axios";
+import Cookies from "js-cookie";
 import { formatDistanceToNow } from "date-fns";
 import SearchLoader from "../loader/SearchLoader";
 import { FaComment, FaThumbsUp } from "react-icons/fa";
@@ -20,8 +21,8 @@ const FullStory = () => {
   const baseUrl = process.env.NEXT_PUBLIC_BASEURL;
 
   const getToken = () => {
-    // Get the authentication token from local storage
-    return localStorage.getItem("token");
+    // Get the authentication token from the cookies
+    return Cookies.get("token");
   };
 
   useEffect(() => {

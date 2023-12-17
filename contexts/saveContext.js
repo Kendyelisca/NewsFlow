@@ -1,6 +1,7 @@
 "use client";
 import { createContext, useContext, useState } from "react";
 import axios from "axios";
+import Cookies from "js-cookie";
 
 const SaveContext = createContext(); // Import createContext
 
@@ -15,7 +16,7 @@ export const SaveProvider = ({ children }) => {
   const [loadingStates, setLoadingStates] = useState({}); // New state for loading states
 
   const getToken = () => {
-    return localStorage.getItem("token");
+    return Cookies.get("token"); // Get the token from cookies
   };
 
   const saveArticle = async (article) => {

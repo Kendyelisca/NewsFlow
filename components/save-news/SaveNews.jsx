@@ -2,6 +2,7 @@
 
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
+import Cookies from "js-cookie";
 import { formatDistanceToNow } from "date-fns";
 import "./SaveNews.css"; // Replace with your actual CSS file
 import { UserContext } from "@/contexts/user-context";
@@ -16,7 +17,7 @@ const SaveNews = () => {
   useEffect(() => {
     const fetchSavedNews = async () => {
       try {
-        const userToken = localStorage.getItem("token");
+        const userToken = Cookies.get("token");
 
         if (!userToken) {
           console.error("User token not found in local storage");
