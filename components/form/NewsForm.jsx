@@ -3,6 +3,7 @@
 import { useContext, useState } from "react";
 import axios from "axios";
 import "./newsForm.css";
+import Cookies from "js-cookie";
 import { headers } from "@/next.config";
 import { useSaveContext } from "@/contexts/saveContext";
 import { UserContext } from "@/contexts/user-context";
@@ -22,7 +23,7 @@ const NewsForm = ({ toggleForm }) => {
 
   const getToken = () => {
     // Get the authentication token from local storage
-    return localStorage.getItem("token");
+    return Cookies.get("token");
   };
 
   const handleInputChange = (e) => {

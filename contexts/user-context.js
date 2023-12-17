@@ -11,7 +11,8 @@ export function UserContextProvider({ children }) {
   const logout = () => {
     // Clear the user data and token
     setUser(null);
-    localStorage.removeItem("token"); // Remove the token from local storage
+    // Remove the token from cookies
+    Cookies.remove("token");
   };
 
   return (

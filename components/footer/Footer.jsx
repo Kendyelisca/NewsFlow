@@ -66,7 +66,7 @@ const Myfooter = () => {
       <footer className="footer-container">
         <div className="footer-content">
           <div className="footer-text">
-            <p className="text-2xl font-extralight">
+            <p className="font-extralight">
               Welcome to NewsFlow, your premier destination for staying abreast
               of the latest news and updates across various domains. Our
               dedicated team curates insightful and reliable news articles to
