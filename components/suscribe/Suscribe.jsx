@@ -63,6 +63,7 @@ const Subscribe = () => {
           className="p-2 "
           value={email}
           onChange={handleEmailChange}
+          required
         />
         <button
           type="submit"
