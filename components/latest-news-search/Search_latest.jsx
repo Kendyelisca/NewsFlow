@@ -8,7 +8,6 @@ import "./latest.css";
 import SearchLoader from "../loader/SearchLoader";
 import { useSaveContext } from "@/contexts/saveContext";
 import { UserContext } from "@/contexts/user-context";
-import { useNewsContext } from "@/contexts/newsContext";
 const Search_latest = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
@@ -27,8 +26,6 @@ const Search_latest = () => {
   useEffect(() => {
     setLoading(true);
 
-    const currentCategory = category;
-
     // Choose whether to fetch the latest news or perform a search
     const apiUrl =
       searchTerm.trim() === ""
@@ -43,7 +40,7 @@ const Search_latest = () => {
         setLoading(false);
       })
       .catch(() => setLoading(false));
-  }, [searchTerm, category]);
+  }, [searchTerm]);
 
   return (
     <div>

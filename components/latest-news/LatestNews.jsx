@@ -7,7 +7,6 @@ import "./latestNews.css";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBookmark } from "@fortawesome/free-solid-svg-icons";
-import { useNewsContext } from "@/contexts/newsContext";
 
 const LatestNews = () => {
   const [articles, setArticles] = useState([]);
