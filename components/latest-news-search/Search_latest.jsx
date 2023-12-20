@@ -8,6 +8,7 @@ import "./latest.css";
 import SearchLoader from "../loader/SearchLoader";
 import { useSaveContext } from "@/contexts/saveContext";
 import { UserContext } from "@/contexts/user-context";
+import { useNewsContext } from "@/contexts/newsContext";
 const Search_latest = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
@@ -26,31 +27,23 @@ const Search_latest = () => {
   useEffect(() => {
     setLoading(true);
 
-    if (searchTerm.trim() === "") {
-      // If the search term is empty, show the latest news
-      axios
-        .get(
-          `https://gnews.io/api/v4/top-headlines?category=general&lang=en&apikey=${apiKey}`
-        )
-        .then((response) => {
-          const articleData = response.data.articles.slice(0, 10); // Get the first 30 articles
-          setSearchResults(articleData);
-          setLoading(false);
-        })
-        .catch(() => setLoading(false));
-    } else {
-      // If there's a search term, perform a search
-      axios
-        .get(
-          `https://gnews.io/api/v4/search?q=${searchTerm}&lang=en&apikey=${apiKey}`
-        )
-        .then((response) => {
-          setSearchResults(response.data.articles);
-          setLoading(false);
-        })
-        .catch(() => setLoading(false));
-    }
-  }, [searchTerm]);
+    const currentCategory = category;
+
+    // Choose whether to fetch the latest news or perform a search
+    const apiUrl =
+      searchTerm.trim() === ""
+        ? `https://gnews.io/api/v4/top-headlines?&lang=en&apikey=${apiKey}`
+        : `https://gnews.io/api/v4/search?q=${searchTerm}&lang=en&apikey=${apiKey}`;
+
+    axios
+      .get(apiUrl)
+      .then((response) => {
+        const articleData = response.data.articles.slice(0, 10);
+        setSearchResults(articleData);
+        setLoading(false);
+      })
+      .catch(() => setLoading(false));
+  }, [searchTerm, category]);
 
   return (
     <div>

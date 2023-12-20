@@ -1,6 +1,7 @@
 import Cultural from "@/components/cultural/Cultural";
 import LatestNews from "@/components/latest-news/LatestNews";
 import MostView from "@/components/mostview/MostView";
+import Story from "@/components/story/Story";
 import Subscribe from "@/components/suscribe/Suscribe";
 import TopBusiness from "@/components/top-business/TopBusiness";
 import { NewsContextProvider } from "@/contexts/newsContext";
@@ -30,6 +31,7 @@ export default function Home() {
         <TopBusiness />
         <LatestNews />
         <MostView />
+        <Story />
         <Cultural />
         <Subscribe />
       </NewsContextProvider>

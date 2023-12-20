@@ -7,60 +7,21 @@ import "./latestNews.css";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBookmark } from "@fortawesome/free-solid-svg-icons";
+import { useNewsContext } from "@/contexts/newsContext";
 
 const LatestNews = () => {
   const [articles, setArticles] = useState([]);
-  const apiKey = process.env.NEXT_PUBLIC_API_KEY;
-  useEffect(() => {
-    // Fetch saved articles from your backend
-    const fetchSavedArticles = async () => {
-      try {
-        const response = await axios.get("/api/saved-articles");
-        setSavedArticles(response.data);
-      } catch (error) {
-        console.error("Error fetching saved articles: ", error);
-      }
-    };
 
+  const apiKey = process.env.NEXT_PUBLIC_API_KEY;
+
+  useEffect(() => {
     axios
-      .get(
-        `https://gnews.io/api/v4/top-headlines?category=general&lang=en&apikey=${apiKey}`
-      )
+      .get(`https://gnews.io/api/v4/top-headlines?&lang=en&apikey=${apiKey}`)
       .then((response) => {
-        const articleData = response.data.articles.slice(0, 8); // Get the first 8 articles
+        const articleData = response.data.articles.slice(0, 8);
         setArticles(articleData);
       });
-
-    fetchSavedArticles();
   }, []);
-
-  //const handleSaveClick = async (article) => {
-  // try {
-  // Check if the article is already saved
-  //if (
-  //    savedArticles.find((savedArticle) => savedArticle.url === article.url)
-  //  ) {
-  // Article is already saved, handle accordingly (e.g., show a message)
-  //console.log("Article is already saved");
-  // return;
-  //}
-
-  // Send a POST request to save the article
-  // await axios.post("/api/save-article", { article });
-
-  // Update the saved articles state
-  //setSavedArticles((prevSavedArticles) => [...prevSavedArticles, article]);
-  //} catch (error) {
-  //  console.error("Error saving article: ", error);
-  // Handle error (e.g., show an error message to the user)
-  //  }
-  //};
-
-  //const isArticleSaved = (article) => {
-  //return savedArticles.some(
-  //(savedArticle) => savedArticle.url === article.url
-  //    );
-  //};
 
   return (
     <div>
@@ -68,10 +29,11 @@ const LatestNews = () => {
         <h2 className="font-bold text-2xl md:text-2xl lg:text-4xl">
           Latest News
         </h2>
-        <p className="font-bold text-red-800">
+        <p className="font-bold text-red-800 ">
           <Link href="/latest_news">See all</Link>
         </p>
       </div>
+
       <div className="late-container">
         {articles.map((article) => (
           <div key={article.url} className="article-card">

@@ -6,7 +6,6 @@ const NewsContext = createContext(null);
 
 export const useNewsContext = () => {
   const [isForm, setIsForm] = useState(false);
-
   const toggleForm = () => {
     setIsForm(!isForm);
   };

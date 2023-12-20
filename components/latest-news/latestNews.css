@@ -40,6 +40,32 @@
 .save-icon {
   font-size: 18px;
 }
+.maintenance-message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.8);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.message {
+  text-align: center;
+    padding: 20px;
+    background-color: #f8d7da; /* Light red background color */
+    border: 1px solid #f5c6cb; /* Border color */
+    border-radius: 5px;
+    margin: 10px 0;
+
+}
+
+.error-text {
+  color: #84202a; /* Dark red text color */
+  margin-bottom: 10px;
+}
+
 
 @media (max-width: 785px) {
   .top-title {
