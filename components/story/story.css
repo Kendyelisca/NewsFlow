@@ -1,0 +1,106 @@
+/* story.css */
+
+.master-story {
+  padding: 50px;
+}
+
+.container-story {
+  display: grid;
+  grid-template-areas:
+    "a a b c"
+    "a a d f";
+  grid-gap: 5px;
+}
+
+.story-item {
+  text-align: center;
+  max-width: 600px;
+  margin: 20px;
+}
+
+.a {
+  grid-area: a;
+}
+
+.a img {
+  min-width: 600px;
+  min-height: 330px;
+}
+
+.b {
+  grid-area: b;
+}
+
+.c {
+  grid-area: c;
+}
+
+.d {
+  grid-area: d;
+}
+
+.f {
+  grid-area: f;
+}
+
+.container-story img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5), 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.container-story p {
+  padding: 10px;
+  border-radius: 0 0 8px 8px; /* Round the bottom corners of the text box */
+}
+
+@media (min-width: 1000px) {
+  .a img {
+  min-width: 200px;
+  
+}
+}
+
+@media (max-width: 999px) {
+
+  .container-story {
+  
+  grid-template-areas:
+    "a a"
+    "b c"
+    "d f";
+  
+}
+
+.a {
+margin: 0 auto;
+  
+}
+.a img {
+  min-height: 300px;
+  min-width: 200px;
+}
+
+}
+
+@media (max-width: 600px) {
+  .container-story {
+    display: flex;
+    flex-direction: column;
+    
+  }
+  .a img {
+  min-height: 200px;
+  min-width: 100%;
+  
+}
+}
+
+@media (max-width: 785px) {
+
+.master-story {
+  padding: 20px;
+}
+}
