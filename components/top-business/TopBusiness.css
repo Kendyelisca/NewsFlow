@@ -1,13 +1,16 @@
 .top-container {
   padding: 50px;
   display: flex;
-  gap: 20px;
+  gap: 50px;
   margin-bottom: 20px;
   margin-top: 70px;
 }
+.top-news-t {
+  max-width: 700px;
+}
 
 .image {
-  flex: 1;
+  flex: 1.2;
   min-width: 0; /* Ensure the image can shrink if needed */
 }
 
@@ -23,6 +26,7 @@
   flex: 2;
   min-width: 0; /* Ensure the description can shrink if needed */
   padding: 10px;
+  margin-top: 20px;
 }
 
 .description a {
@@ -39,5 +43,8 @@
     max-height: 300px;
     width: 97%;
     margin: 0 auto;
+  }
+  .description {
+    margin-top: 0px;
   }
 }

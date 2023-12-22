@@ -58,19 +58,18 @@
 
 @media (min-width: 1000px) {
   .a img {
-  min-width: 200px;
+  min-width: 170px;
   
 }
 }
 
-@media (max-width: 999px) {
+@media (max-width: 1000px) {
 
   .container-story {
   
   grid-template-areas:
-    "a a"
-    "b c"
-    "d f";
+    "b c d"
+    "f a a";
   
 }
 
@@ -82,8 +81,22 @@ margin: 0 auto;
   min-height: 300px;
   min-width: 200px;
 }
+.master-story {
+  padding: 20px;
+}
 
 }
+
+
+
+@media (max-width: 785px) {
+
+.master-story {
+  padding: 20px;
+}
+}
+
+
 
 @media (max-width: 600px) {
   .container-story {
@@ -95,12 +108,5 @@ margin: 0 auto;
   min-height: 200px;
   min-width: 100%;
   
-}
-}
-
-@media (max-width: 785px) {
-
-.master-story {
-  padding: 20px;
 }
 }
