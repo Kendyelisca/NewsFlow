@@ -48,7 +48,6 @@
 }
 
 .item-5 img {
-  width: 100%;
   height: 500px;
 }
 
@@ -64,18 +63,38 @@
   margin-top: 10px; /* Adjust the margin as needed */
 }
 
-@media (max-width: 785px) {
+@media (max-width: 705px) {
   .cult-container {
     padding: 20px;
   }
   .cult-1 {
-    grid-template-areas:
-      "a a a"
-      "e e e"
-      "y y y"
-      "b t r";
+ display: grid;
+ grid-template-areas:
+   "y t b" 
+   "r a a"
+   "e e e";
+  }
+
+  .item-5 img {
+    height: 390px;
+  }
+
+  
+  .item-5 {
+  margin-right: 0px;
+}
+.item-5 p {
+  padding-top: 0px;
+}
+  
+}
+
+@media (max-width: 480px) {
+  .cult-1{
+    display: flex;
+    flex-direction: column;
   }
   .item-5 img {
-    height: 200px;
+    height: 250px;
   }
 }
