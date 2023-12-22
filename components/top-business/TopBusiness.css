@@ -30,10 +30,14 @@
 }
 
 @media (max-width: 785px) {
-  .top-container{
+  .top-container {
     flex-direction: column;
     padding: 20px;
   }
 
-  
+  .image img {
+    max-height: 300px;
+    width: 97%;
+    margin: 0 auto;
+  }
 }
