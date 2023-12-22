@@ -48,8 +48,10 @@ const TopBusiness = () => {
               <p className="text-sm pb-5">
                 Published . {getRelativeTime(topNews.publishedAt)}
               </p>
-              <h3 className="font-bold pb-3 text-2xl">{topNews.title}</h3>
-              <p className="pb-3 text-3xl">{topNews.description}</p>
+              <h3 className="top-news-t font-bold pb-3 text-2xl md:text-2xl lg:text-4xl">
+                {topNews.title}
+              </h3>
+              {/* <p className="pb-3 text-3xl">{topNews.description}</p> */}
               <a href={topNews.url} target="_blank" rel="noopener noreferrer">
                 Read More
               </a>
