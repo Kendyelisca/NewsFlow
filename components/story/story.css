@@ -100,13 +100,26 @@ margin: 0 auto;
 
 @media (max-width: 600px) {
   .container-story {
-    display: flex;
-    flex-direction: column;
-    
+    grid-template-areas:
+      "a"
+      "b"
+      "c"
+      "d"
+      "f";
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
   }
+
+  .a {
+    margin: 0 auto;
+  }
+
   .a img {
-  min-height: 200px;
-  min-width: 100%;
-  
-}
+    max-width: 100%;
+    height: auto;
+  }
+
+  .master-story {
+    padding: 20px;
+  }
 }
