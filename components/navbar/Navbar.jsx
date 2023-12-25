@@ -103,35 +103,35 @@ const MyNavbar = () => {
         {isMenuOpen && (
           <div className="menu-options">
             {user && (
-              <li>
+              <li onClick={toggleMenu}>
                 <Link href="/user_account" className="font-bold">
                   {user.username}
                 </Link>
               </li>
             )}
             {!user && (
-              <li>
+              <li onClick={toggleMenu}>
                 <Link href="/login" className="font-bold effect">
                   Login
                 </Link>
               </li>
             )}
-            <li>
+            <li onClick={toggleMenu}>
               <Link href="/stories" className="effect">
                 Stories {isNewStories && <span className="red-dot"></span>}
               </Link>
             </li>
-            <li>
+            <li onClick={toggleMenu}>
               <Link href="/creator" className="effect">
                 Creator
               </Link>
             </li>
-            <li>
+            <li onClick={toggleMenu}>
               <Link href="/community" className="effect">
                 Community
               </Link>
             </li>
-            <li>
+            <li onClick={toggleMenu}>
               <Link href="/subscribe" className="effect">
                 Subscribe
               </Link>
@@ -145,13 +145,13 @@ const MyNavbar = () => {
                 Write
               </a>
             </li>
-            <li>
+            <li onClick={toggleMenu}>
               <Link href="/saved_news">
                 <AiFillSave />
                 {isNewArticles && <span className="red-dot"></span>}
               </Link>
             </li>
-            <li>
+            <li onClick={toggleMenu}>
               <a href="#suscribe">
                 <AiFillBell />
               </a>
