@@ -28,31 +28,46 @@ const FullStory = () => {
   useEffect(() => {
     const fetchStoryData = async () => {
       try {
-        // Fetch story data including likes and comments
-        const response = await axios.get(`${baseUrl}/stories`);
+        const cachedData = localStorage.getItem("storyData");
+        const cacheTimestamp = localStorage.getItem("storyDataTimestamp");
 
-        if (response.data && response.data.length > 0) {
-          const sortedNews = response.data.sort((a, b) => {
-            return new Date(b.createdAt) - new Date(a.createdAt);
-          });
-          setStoryData(sortedNews);
-          setNewStories(false);
-
-          console.log("Sorted Story Data: ", sortedNews);
+        // Check if cached data exists and is not expired (e.g., 1 hour cache)
+        if (
+          cachedData &&
+          cacheTimestamp &&
+          Date.now() - cacheTimestamp < 3600000
+        ) {
+          setStoryData(JSON.parse(cachedData));
+          setLoading(false);
         } else {
-          console.error(
-            "No data received from the API or the data array is empty"
-          );
+          const response = await axios.get(`${baseUrl}/stories`);
+
+          if (response.data && response.data.length > 0) {
+            const sortedNews = response.data.sort((a, b) => {
+              return new Date(b.createdAt) - new Date(a.createdAt);
+            });
+            setStoryData(sortedNews);
+            setNewStories(false);
+
+            localStorage.setItem("storyData", JSON.stringify(sortedNews));
+            localStorage.setItem("storyDataTimestamp", Date.now());
+
+            console.log("Sorted Story Data: ", sortedNews);
+          } else {
+            console.error(
+              "No data received from the API or the data array is empty"
+            );
+          }
+          setLoading(false);
         }
       } catch (error) {
         console.error("Error fetching full story data: ", error);
-      } finally {
         setLoading(false);
       }
     };
 
     fetchStoryData();
-  }, []);
+  }, [baseUrl, setNewStories]);
 
   const handleLike = async (storyId) => {
     alert("We are working on this feature.");
@@ -60,24 +75,6 @@ const FullStory = () => {
 
   const handleComment = async (storyId) => {
     alert("we are working on this feature.");
-    // try {
-    //   // Send a comment request to the backend
-    //   await axios.post(
-    //     `${baseUrl}/stories/${storyId}/comments`, // Adjust the API endpoint based on your backend structure
-    //     { text: commentText }
-    //   );
-
-    //   // Update the comments state for the specific story
-    //   setComments((prevComments) => [
-    //     ...prevComments,
-    //     { text: commentText, userId: /* add the user ID here */ },
-    //   ]);
-
-    //   // Clear the comment input field
-    //   setCommentText("");
-    // } catch (error) {
-    //   console.error("Error adding a comment: ", error);
-    // }
   };
 
   const handleFollow = async (storyId) => {
