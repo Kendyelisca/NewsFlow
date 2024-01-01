@@ -1,45 +1,69 @@
 "use client";
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import axios from "axios";
-import Cookies from "js-cookie";
+import { UserContext } from "./user-context";
 
-const SaveContext = createContext(); // Import createContext
+const SaveContext = createContext();
 
 export const useSaveContext = () => {
   return useContext(SaveContext);
 };
+
 export const SaveProvider = ({ children }) => {
   const [savedArticles, setSavedArticles] = useState([]);
   const baseUrl = process.env.NEXT_PUBLIC_BASEURL;
   const [isNewArticles, setNewArticles] = useState(false);
   const [isNewStories, setNewStories] = useState(false);
-  const [loadingStates, setLoadingStates] = useState({}); // New state for loading states
+  const { token, user } = useContext(UserContext);
+  const [loadingStates, setLoadingStates] = useState({});
 
-  const getToken = () => {
-    return Cookies.get("token"); // Get the token from cookies
+  useEffect(() => {
+    // Load saved articles when the user and token are available
+    if (user && token) {
+      loadSavedArticles();
+    }
+  }, [user, token]);
+
+  const loadSavedArticles = async () => {
+    try {
+      const response = await axios.get(`${baseUrl}/saves`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setSavedArticles(response.data);
+    } catch (error) {
+      console.error(
+        "Error loading saved articles:",
+        error.response?.data || error.message || error
+      );
+    }
   };
 
   const saveArticle = async (article) => {
     try {
       setLoadingStates((prevLoadingStates) => ({
         ...prevLoadingStates,
-        [article.url]: true, // Set loading state for this specific article
+        [article.url]: true,
       }));
 
       await axios.post(`${baseUrl}/saves`, article, {
         headers: {
-          Authorization: `Bearer ${getToken()}`,
+          Authorization: `Bearer ${token}`,
         },
       });
 
       setSavedArticles((prevSavedArticles) => [...prevSavedArticles, article]);
       setNewArticles(true);
     } catch (error) {
-      console.error("Error saving article:", error.response.data);
+      console.error(
+        "Error saving article:",
+        error.response?.data || error.message || error
+      );
     } finally {
       setLoadingStates((prevLoadingStates) => ({
         ...prevLoadingStates,
-        [article.url]: false, // Reset loading state for this specific article
+        [article.url]: false,
       }));
     }
   };
@@ -48,18 +72,14 @@ export const SaveProvider = ({ children }) => {
     try {
       setLoadingStates((prevLoadingStates) => ({
         ...prevLoadingStates,
-        [articleUrl]: true, // Set loading state for this specific article
+        [articleUrl]: true,
       }));
-
-      console.log("Unsaving article with URL:", articleUrl);
 
       await axios.delete(`${baseUrl}/saves/${encodeURIComponent(articleUrl)}`, {
         headers: {
-          Authorization: `Bearer ${getToken()}`,
+          Authorization: `Bearer ${token}`,
         },
       });
-
-      console.log("Article successfully unsaved:", articleUrl);
 
       setSavedArticles((prevSavedArticles) =>
         prevSavedArticles.filter((article) => article.url !== articleUrl)
@@ -69,7 +89,7 @@ export const SaveProvider = ({ children }) => {
     } finally {
       setLoadingStates((prevLoadingStates) => ({
         ...prevLoadingStates,
-        [articleUrl]: false, // Reset loading state for this specific article
+        [articleUrl]: false,
       }));
     }
   };

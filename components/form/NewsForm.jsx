@@ -18,13 +18,8 @@ const NewsForm = ({ toggleForm }) => {
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false); // Add state for submission status
-  const { user } = useContext(UserContext);
+  const { user, token } = useContext(UserContext);
   const baseUrl = process.env.NEXT_PUBLIC_BASEURL;
-
-  const getToken = () => {
-    // Get the authentication token from local storage
-    return Cookies.get("token");
-  };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -55,7 +50,7 @@ const NewsForm = ({ toggleForm }) => {
     try {
       // Assuming you have a backend endpoint to handle the form data submission
       const response = await axios.post(`${baseUrl}/stories`, formData, {
-        headers: { Authorization: `Bearer ${getToken()}` },
+        headers: { Authorization: `Bearer ${token}` },
       });
 
       // Handle success, maybe reset the form or do any necessary actions

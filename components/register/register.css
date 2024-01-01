@@ -18,7 +18,7 @@
   padding: 20px;
 }
 
-.suscess-content{
+.suscess-content {
   max-width: 600px;
   padding: 20px;
   border: 1px solid #ccc;
@@ -29,7 +29,7 @@
 .register-form {
   max-width: 600px;
   padding: 20px;
-  
+
   border: 1px solid #ccc;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -39,8 +39,6 @@
   margin-bottom: 15px;
   margin-top: 20px;
 }
-
-
 
 .form-group input {
   width: 100%;
@@ -107,4 +105,7 @@
 
 .forgot-password a:hover {
   text-decoration: underline;
+}
+.eye-icon {
+  font-size: 20px;
 }

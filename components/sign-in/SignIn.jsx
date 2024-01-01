@@ -2,14 +2,13 @@
 
 import React, { useState, useContext } from "react";
 import axios from "axios";
-import { FaGoogle, FaGithub } from "react-icons/fa";
+import { FaGoogle, FaGithub, FaEye, FaEyeSlash } from "react-icons/fa";
 import Link from "next/link";
-import Cookies from "js-cookie"; // Import js-cookie
 import { UserContext } from "@/contexts/user-context";
 import "./signIn.css";
 
 const SignIn = () => {
-  const { setUser } = useContext(UserContext);
+  const { SaveUser, SaveToken } = useContext(UserContext);
 
   const [formData, setFormData] = useState({
     email: "",
@@ -18,6 +17,7 @@ const SignIn = () => {
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [showPassword, setShowPassword] = useState(false);
   const [successMessage, setSuccessMessage] = useState(null);
   const [existingUser, setExistingUser] = useState(false);
   const baseUrl = process.env.NEXT_PUBLIC_BASEURL;
@@ -25,10 +25,13 @@ const SignIn = () => {
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+  const handleTogglePassword = () => {
+    setShowPassword((prevShowPassword) => !prevShowPassword);
+  };
 
   const handleLoginSuccess = (userData) => {
-    Cookies.set("token", userData.token); // Set the token in the cookie
-    setUser(userData.user);
+    SaveToken(userData.token); // Set the token in the localstorage
+    SaveUser(userData.user);
     setFormData({
       email: "",
       password: "",
@@ -100,15 +103,28 @@ const SignIn = () => {
                 />
               </div>
               <div className="form-group">
-                <input
-                  type="password"
-                  id="password"
-                  name="password"
-                  placeholder="Password:"
-                  value={formData.password}
-                  onChange={handleChange}
-                  required
-                />
+                <div className="password-input-container flex justify-center items-center bg-white">
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    id="password"
+                    name="password"
+                    placeholder="Password:"
+                    value={formData.password}
+                    onChange={handleChange}
+                    required
+                  />
+                  {showPassword ? (
+                    <FaEyeSlash
+                      className="eye-icon"
+                      onClick={handleTogglePassword}
+                    />
+                  ) : (
+                    <FaEye
+                      className="eye-icon"
+                      onClick={handleTogglePassword}
+                    />
+                  )}
+                </div>
               </div>
               <div className="form-group">
                 <button type="submit" disabled={loading}>
