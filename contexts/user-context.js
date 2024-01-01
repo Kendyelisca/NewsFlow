@@ -13,7 +13,7 @@ export function UserContextProvider({ children }) {
     // Check if localStorage is available
     if (typeof window !== "undefined") {
       const storedUser = JSON.parse(localStorage.getItem("user"));
-      const storedToken = JSON.parse(localStorage.getItem("token"));
+      const storedToken = localStorage.getItem("token");
       setUser(storedUser);
       setToken(storedToken);
       console.log(storedToken);
