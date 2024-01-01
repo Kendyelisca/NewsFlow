@@ -2,31 +2,32 @@
 
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
-import Cookies from "js-cookie";
 import { formatDistanceToNow } from "date-fns";
 import "./SaveNews.css"; // Replace with your actual CSS file
 import { UserContext } from "@/contexts/user-context";
 import { useSaveContext } from "@/contexts/saveContext"; // Import the useSaveContext hook
+import SearchLoader from "../loader/SearchLoader";
 
 const SaveNews = () => {
-  const { user } = useContext(UserContext);
+  const { user, token } = useContext(UserContext);
   const [savedNews, setSavedNews] = useState([]);
+  const [loading, setLoading] = useState(false); // New loading state
   const { loadingStates, unsaveArticle, setNewArticles } = useSaveContext(); // Use the unsaveArticle function from SaveContext
   const baseUrl = process.env.NEXT_PUBLIC_BASEURL;
 
   useEffect(() => {
     const fetchSavedNews = async () => {
       try {
-        const userToken = Cookies.get("token");
-
-        if (!userToken) {
+        if (!token) {
           console.error("User token not found in local storage");
           return;
         }
 
+        setLoading(true); // Set loading to true before fetching
+
         const response = await axios.get(`${baseUrl}/saves`, {
           headers: {
-            Authorization: `Bearer ${userToken}`,
+            Authorization: `Bearer ${token}`,
           },
         });
         console.log("API Response:", response.data);
@@ -44,6 +45,8 @@ const SaveNews = () => {
         }
       } catch (error) {
         console.error("Error fetching saved news: ", error);
+      } finally {
+        setLoading(false); // Set loading to false after fetching, whether successful or not
       }
     };
 
@@ -70,7 +73,9 @@ const SaveNews = () => {
     <div className="save-news-container">
       {!user && <p className="login-message ">Login to see your saved news</p>}
 
-      {user && savedNews.length === 0 && (
+      {user && loading && <SearchLoader />}
+
+      {user && !loading && savedNews.length === 0 && (
         <p className="no-saved-news-message">
           Looks like your saved news is empty...
         </p>

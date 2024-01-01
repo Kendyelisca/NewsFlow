@@ -8,6 +8,7 @@ import SearchLoader from "../loader/SearchLoader";
 import { FaComment, FaThumbsUp } from "react-icons/fa";
 import "./fullStory.css";
 import { useSaveContext } from "@/contexts/saveContext";
+import { UserContext } from "@/contexts/user-context";
 
 const FullStory = () => {
   const [storyData, setStoryData] = useState([]);
@@ -17,13 +18,7 @@ const FullStory = () => {
   const [liked, setLiked] = useState(false);
   const [commentText, setCommentText] = useState("");
   const { setNewStories } = useSaveContext();
-
   const baseUrl = process.env.NEXT_PUBLIC_BASEURL;
-
-  const getToken = () => {
-    // Get the authentication token from the cookies
-    return Cookies.get("token");
-  };
 
   useEffect(() => {
     const fetchStoryData = async () => {

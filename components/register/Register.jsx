@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import axios from "axios";
-import { FaGoogle, FaGithub } from "react-icons/fa";
+import { FaGoogle, FaGithub, FaEye, FaEyeSlash } from "react-icons/fa";
 import "./register.css";
 import Link from "next/link";
 
@@ -14,12 +14,17 @@ const Register = () => {
     password: "",
   });
 
+  const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false); // New state for loading indicator
   const [error, setError] = useState(null);
   const [successMessage, setSuccessMessage] = useState(null);
   const baseUrl = process.env.NEXT_PUBLIC_BASEURL;
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleTogglePassword = () => {
+    setShowPassword((prevShowPassword) => !prevShowPassword);
   };
 
   const handleSubmit = async (e) => {
@@ -118,15 +123,22 @@ const Register = () => {
           />
         </div>
         <div className="form-group">
-          <input
-            type="password"
-            id="password"
-            name="password"
-            placeholder="Password:"
-            value={formData.password}
-            onChange={handleChange}
-            required
-          />
+          <div className="password-input-container flex items-center justify-center bg-white ">
+            <input
+              type={showPassword ? "text" : "password"}
+              id="password"
+              name="password"
+              placeholder="Password:"
+              value={formData.password}
+              onChange={handleChange}
+              required
+            />
+            {showPassword ? (
+              <FaEyeSlash className="eye-icon" onClick={handleTogglePassword} />
+            ) : (
+              <FaEye className="eye-icon" onClick={handleTogglePassword} />
+            )}
+          </div>
         </div>
         <div className="form-group">
           {/* Disable the button while loading */}
