@@ -16,7 +16,6 @@ export function UserContextProvider({ children }) {
       const storedToken = localStorage.getItem("token");
       setUser(storedUser);
       setToken(storedToken);
-      console.log(storedToken);
     }
   }, []);
 
@@ -43,7 +42,6 @@ export function UserContextProvider({ children }) {
 
   const SaveToken = (token) => {
     setToken(token);
-    console.log("user token context:", token);
     if (typeof window !== "undefined") {
       // Check if localStorage is available
       localStorage.setItem(

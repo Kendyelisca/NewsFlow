@@ -3,24 +3,46 @@
 import React, { useState, useEffect } from "react";
 import "./story.css";
 import Link from "next/link";
+import axios from "axios";
+import {
+  cacheData,
+  getCachedData,
+  getCachedTimestamp,
+} from "../utils/cacheUtility";
 
 const Story = () => {
   const [stories, setStories] = useState([]);
+  const cacheKey = "userStories";
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(
-          "https://news-backend-api-poid.onrender.com/stories"
-        );
-        const data = await response.json();
-        setStories(data.slice(0, 5)); // Take only the first 5 stories
-      } catch (error) {
-        console.error("Error fetching data:", error);
+    const fetchAndCacheData = async () => {
+      const cachedData = getCachedData(cacheKey);
+      const cacheTimestamp = getCachedTimestamp(cacheKey);
+
+      if (
+        cachedData &&
+        cacheTimestamp &&
+        Date.now() - cacheTimestamp < 3600000 // 1 hour
+      ) {
+        setStories(JSON.parse(cachedData));
+      } else {
+        try {
+          const response = await axios.get(
+            "https://news-backend-api-poid.onrender.com/stories"
+          );
+          const data = response.data.slice(0, 5); // Take only the first 5 stories
+
+          setStories(data);
+
+          // Cache the fetched data
+          cacheData(cacheKey, data);
+        } catch (error) {
+          console.error("Error fetching data:", error);
+        }
       }
     };
 
-    fetchData();
+    fetchAndCacheData();
   }, []);
 
   return (

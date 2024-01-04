@@ -1,8 +1,8 @@
 "use client";
 
+// FullStory.jsx
 import { useState, useEffect } from "react";
 import axios from "axios";
-import Cookies from "js-cookie";
 import { formatDistanceToNow } from "date-fns";
 import SearchLoader from "../loader/SearchLoader";
 import { FaComment, FaThumbsUp } from "react-icons/fa";
@@ -13,55 +13,36 @@ import { UserContext } from "@/contexts/user-context";
 const FullStory = () => {
   const [storyData, setStoryData] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [likes, setLikes] = useState(0);
-  const [comments, setComments] = useState([]);
-  const [liked, setLiked] = useState(false);
-  const [commentText, setCommentText] = useState("");
   const { setNewStories } = useSaveContext();
   const baseUrl = process.env.NEXT_PUBLIC_BASEURL;
 
-  useEffect(() => {
-    const fetchStoryData = async () => {
-      try {
-        const cachedData = localStorage.getItem("storyData");
-        const cacheTimestamp = localStorage.getItem("storyDataTimestamp");
+  // Function to fetch data
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(`${baseUrl}/stories`);
 
-        // Check if cached data exists and is not expired (e.g., 1 hour cache)
-        if (
-          cachedData &&
-          cacheTimestamp &&
-          Date.now() - cacheTimestamp < 3600000
-        ) {
-          setStoryData(JSON.parse(cachedData));
-          setLoading(false);
-        } else {
-          const response = await axios.get(`${baseUrl}/stories`);
+      if (response.data && response.data.length > 0) {
+        const sortedNews = response.data.sort(
+          (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+        );
+        setStoryData(sortedNews);
+        setNewStories(false);
 
-          if (response.data && response.data.length > 0) {
-            const sortedNews = response.data.sort((a, b) => {
-              return new Date(b.createdAt) - new Date(a.createdAt);
-            });
-            setStoryData(sortedNews);
-            setNewStories(false);
-
-            localStorage.setItem("storyData", JSON.stringify(sortedNews));
-            localStorage.setItem("storyDataTimestamp", Date.now());
-
-            console.log("Sorted Story Data: ", sortedNews);
-          } else {
-            console.error(
-              "No data received from the API or the data array is empty"
-            );
-          }
-          setLoading(false);
-        }
-      } catch (error) {
-        console.error("Error fetching full story data: ", error);
-        setLoading(false);
+        console.log("Sorted Story Data: ", sortedNews);
+      } else {
+        console.error(
+          "No data received from the API or the data array is empty"
+        );
       }
-    };
+      setLoading(false);
+    } catch (error) {
+      console.error("Error fetching full story data: ", error);
+      setLoading(false);
+    }
+  };
 
-    fetchStoryData();
+  useEffect(() => {
+    fetchData();
   }, [baseUrl, setNewStories]);
 
   const handleLike = async (storyId) => {
@@ -69,11 +50,11 @@ const FullStory = () => {
   };
 
   const handleComment = async (storyId) => {
-    alert("we are working on this feature.");
+    alert("We are working on this feature.");
   };
 
   const handleFollow = async (storyId) => {
-    alert("we are working on this feature.");
+    alert("We are working on this feature.");
   };
 
   return (
@@ -110,7 +91,7 @@ const FullStory = () => {
                 <div
                   className="flex justify-center items-center gap-2 cursor-pointer"
                   onClick={() => handleLike(story.id)}
-                  style={{ color: liked ? "green" : "black" }}
+                  style={{ color: "green" }}
                 >
                   like <FaThumbsUp size={20} color="green" />0
                 </div>
@@ -121,28 +102,6 @@ const FullStory = () => {
                   Follow
                 </div>
               </div>
-              {/* <a href={story.url} target="_blank" rel="noopener noreferrer">
-              follow me on twitter
-              </a> */}
-              {/* <div>
-                {" "}
-                {comments.map((comment, commentIndex) => (
-                  <div key={commentIndex}>
-                    <p>{comment.text}</p>
-                  </div>
-                ))}
-              </div> */}
-              {/* <div>
-                <input
-                  type="text"
-                  placeholder="Add a comment..."
-                  value={commentText}
-                  onChange={(e) => setCommentText(e.target.value)}
-                />
-                <button onClick={() => handleComment(story.id)}>
-                  Add Comment
-                </button>
-              </div> */}
               <h1>{story.title}</h1>
               <p>{story.description}</p>
             </div>
