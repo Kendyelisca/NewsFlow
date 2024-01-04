@@ -8,17 +8,32 @@ const Account = () => {
   const { user, logout } = useContext(UserContext);
   const [feedback, setFeedback] = useState("");
 
-  if (!user) {
-    // Handle the case where user is not available
+  const renderUserInfo = () => {
+    return (
+      <div className="account-info">
+        <div>
+          <strong>Username:</strong> {user.username}
+        </div>
+        <div>
+          <strong>Name:</strong> {user.name || "Not provided"}
+        </div>
+        <div>
+          <strong>Email:</strong> {user.email || "Not provided"}
+        </div>
+        {/* Add more user information if available */}
+      </div>
+    );
+  };
+
+  const renderError = () => {
     return (
       <div className="account-error">
         User information not available. Please log in.
       </div>
     );
-  }
+  };
 
   const handleLogout = () => {
-    // Call the logout function from the UserContext
     logout();
   };
 
@@ -38,18 +53,7 @@ const Account = () => {
     <div className="master-account">
       <div className="account-container">
         <h2 className="account-title">Account Information</h2>
-        <div className="account-info">
-          <div>
-            <strong>Username:</strong> {user.username}
-          </div>
-          <div>
-            <strong>Name:</strong> {user.name || "Not provided"}
-          </div>
-          <div>
-            <strong>Email:</strong> {user.email || "Not provided"}
-          </div>
-          {/* Add more user information if available */}
-        </div>
+        {user ? renderUserInfo() : renderError()}
         <button className="logout-button" onClick={handleLogout}>
           Logout
         </button>

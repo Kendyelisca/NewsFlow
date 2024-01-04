@@ -1,12 +1,13 @@
 "use client";
 
+// NewsForm.jsx
 import { useContext, useState } from "react";
 import axios from "axios";
-import "./newsForm.css";
-import Cookies from "js-cookie";
 import { headers } from "@/next.config";
 import { useSaveContext } from "@/contexts/saveContext";
 import { UserContext } from "@/contexts/user-context";
+import "./newsForm.css";
+
 const NewsForm = ({ toggleForm }) => {
   const [formData, setFormData] = useState({
     title: "",
@@ -17,7 +18,7 @@ const NewsForm = ({ toggleForm }) => {
   const { setNewStories } = useSaveContext();
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false); // Add state for submission status
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const { user, token } = useContext(UserContext);
   const baseUrl = process.env.NEXT_PUBLIC_BASEURL;
 
@@ -32,10 +33,10 @@ const NewsForm = ({ toggleForm }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    //check if user exist
-
+    // Check if user exists
     if (!user) {
       alert("Please log in to share your story.");
+      return;
     }
 
     // Validate title and description
@@ -99,7 +100,7 @@ const NewsForm = ({ toggleForm }) => {
           <input
             type="text"
             name="image"
-            placeholder="Image URL(optional):"
+            placeholder="Image URL (optional):"
             value={formData.image}
             onChange={handleInputChange}
           />
@@ -107,7 +108,7 @@ const NewsForm = ({ toggleForm }) => {
           <input
             type="text"
             name="url"
-            placeholder="Link(optional):"
+            placeholder="Link (optional):"
             value={formData.url}
             onChange={handleInputChange}
           />
@@ -122,7 +123,7 @@ const NewsForm = ({ toggleForm }) => {
           <button
             type="submit"
             className="bg-red-800 p-2 rounded-xl text-white hover:bg-red-700"
-            disabled={isSubmitting} // Disable the button when submitting
+            disabled={isSubmitting}
           >
             {isSubmitting ? "Submitting..." : "Submit"}
           </button>

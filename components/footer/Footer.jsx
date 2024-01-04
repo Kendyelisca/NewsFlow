@@ -1,4 +1,5 @@
-import "./footer.css";
+// Myfooter.jsx
+import React from "react";
 import {
   FaWhatsapp,
   FaInstagram,
@@ -9,59 +10,45 @@ import {
   FaEnvelope,
 } from "react-icons/fa";
 import classNames from "classnames";
+import "./footer.css";
+
+const FooterOption = ({ title, options }) => (
+  <div className="options">
+    <b>{title}</b>
+    {options.map((option, index) => (
+      <p key={index}>{option}</p>
+    ))}
+  </div>
+);
 
 const Myfooter = () => {
   return (
     <>
       <div className="container-bottom">
-        <div className="options">
-          <b>Sport</b>
-          <p>Football</p>
-          <p>Basketball</p>
-          <p>Tennis</p>
-          <p>Golf</p>
-          <p>Swim</p>
-        </div>
-        <div className="options">
-          <b>Politics</b>
-          <p>Government</p>
-          <p>President</p>
-          <p>DPR</p>
-          <p>Patrai</p>
-          <p>Democrat</p>
-        </div>
-        <div className="options">
-          <b>Health</b>
-          <p>Covid-19</p>
-          <p>Cough</p>
-          <p>Dizzy</p>
-          <p>Sprain</p>
-          <p>Typhus</p>
-        </div>
-        <div className="options">
-          <b>Environment</b>
-          <p>River</p>
-          <p>Sea</p>
-          <p>Mainland</p>
-          <p>Mountains</p>
-          <p>Ricefield</p>
-        </div>
-        <div className="options">
-          <b>Business</b>
-          <p>Start Up</p>
-          <p>Agency</p>
-          <p>Market</p>
-          <p>Ecommerce</p>
-          <p>Creative</p>
-        </div>
-        <div className="options">
-          <b>Education</b>
-          <p>UIUX</p>
-          <p>Test</p>
-          <p>SNBP</p>
-          <p>University</p>
-          <p>School</p>
-        </div>
+        <FooterOption
+          title="Sport"
+          options={["Football", "Basketball", "Tennis", "Golf", "Swim"]}
+        />
+        <FooterOption
+          title="Politics"
+          options={["Government", "President", "DPR", "Patrai", "Democrat"]}
+        />
+        <FooterOption
+          title="Health"
+          options={["Covid-19", "Cough", "Dizzy", "Sprain", "Typhus"]}
+        />
+        <FooterOption
+          title="Environment"
+          options={["River", "Sea", "Mainland", "Mountains", "Ricefield"]}
+        />
+        <FooterOption
+          title="Business"
+          options={["Start Up", "Agency", "Market", "Ecommerce", "Creative"]}
+        />
+        <FooterOption
+          title="Education"
+          options={["UIUX", "Test", "SNBP", "University", "School"]}
+        />
       </div>
       <footer className="footer-container">
         <div className="footer-content">

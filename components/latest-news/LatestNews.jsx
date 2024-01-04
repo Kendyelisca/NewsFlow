@@ -5,22 +5,49 @@ import axios from "axios";
 import { formatDistanceToNow } from "date-fns";
 import "./latestNews.css";
 import Link from "next/link";
+import {
+  cacheData,
+  getCachedData,
+  getCachedTimestamp,
+} from "../../components/utils/cacheUtility";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBookmark } from "@fortawesome/free-solid-svg-icons";
 
 const LatestNews = () => {
   const [articles, setArticles] = useState([]);
-
   const apiKey = process.env.NEXT_PUBLIC_API_KEY;
+  const cacheKey = "latestNews";
 
   useEffect(() => {
-    axios
-      .get(`https://gnews.io/api/v4/top-headlines?&lang=en&apikey=${apiKey}`)
-      .then((response) => {
-        const articleData = response.data.articles.slice(0, 8);
-        setArticles(articleData);
-      });
-  }, []);
+    const fetchData = async () => {
+      const cachedData = getCachedData(cacheKey);
+      const cacheTimestamp = getCachedTimestamp(cacheKey);
+
+      if (
+        cachedData &&
+        cacheTimestamp &&
+        Date.now() - cacheTimestamp < 3600000 // 1 hour
+      ) {
+        setArticles(JSON.parse(cachedData));
+      } else {
+        try {
+          const response = await axios.get(
+            `https://gnews.io/api/v4/top-headlines?&lang=en&apikey=${apiKey}`
+          );
+
+          const articleData = response.data.articles.slice(0, 8);
+          setArticles(articleData);
+
+          // Cache the fetched data
+          cacheData(cacheKey, articleData);
+        } catch (error) {
+          console.error("Error fetching latest news: ", error);
+        }
+      }
+    };
+
+    fetchData();
+  }, [apiKey]);
 
   return (
     <div>
